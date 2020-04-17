@@ -119,22 +119,22 @@ const car3 = {};
 const car4 = {};
 const car5 = {};
 
-Object.assign(car2,car1);
-Object.assign(car3,car1);
-Object.assign(car4,car1);
-Object.assign(car5,car1);
+// Object.assign(car2,car1);
+// Object.assign(car3,car1);
+// Object.assign(car4,car1);
+// Object.assign(car5,car1);
 
-// let cars = [car1,car2,car3,car4,car5]
+let cars = [car1,car2,car3,car4,car5]
 
-// for (index=1; index<5; index++){
-//     Object.assign(cars[index],cars[0]);
-//     cars[index].licensePlate = cars[index].licensePlate +=index;
-// }
+for (index=1; index<5; index++){
+    Object.assign(cars[index],cars[0]);
+    cars[index].licensePlate = `NS${licencePlateCar1+index}-BA`;
+}
 
-car2.licensePlate = "NS412-BA";
-car3.licensePlate = "NS413-BA";
-car4.licensePlate = "NS414-BA";
-car5.licensePlate = "NS415-BA";
+// car2.licensePlate = "NS412-BA";
+// car3.licensePlate = "NS413-BA";
+// car4.licensePlate = "NS414-BA";
+// car5.licensePlate = "NS415-BA";
 
 console.log(car1);
 console.log(car2);
@@ -150,8 +150,6 @@ console.log(car5);
 
 console.log("-----EXERCISE 9-----");
 let carsForRent = [car1,car2,car3,car4,car5];
-
-//let carsForRent = cars.copyWithin(0,5);
 console.log(carsForRent);
 // /* EXERCISE 10
 // Remove the first and the last car from the carsForRent array.

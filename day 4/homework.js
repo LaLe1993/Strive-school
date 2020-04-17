@@ -38,7 +38,7 @@ const crazySum = function(x1,x2) {
     if (x1 !== x2){
         sum = x1 + x2;
     }else{
-        sum = x1 + x1 + x1;
+        sum = (x1 + x2)*3   ;
     }
     return sum;
 }
@@ -54,7 +54,7 @@ const crazySum1 = (x3,x4) => {
     if (x3 !== x4){
         sum = x3 + x4;
     }else{
-        sum = x3 + x3 + x3;
+        sum = (x3 + x4)*3;
     }
     return sum;
 }
@@ -95,7 +95,7 @@ Write a function "boundary" which accept an integer N and returns true if N is w
 /* WRITE YOUR CODE HERE */
 console.log("-------EXERCISE 4 USING ARROW-------")
 const boundary = (N) => {
-    if (20<= N && N <=100 || N === 400) {
+    if ((20<= N && N <=100) || N === 400) {
         return true;
     }else{
         return false;
@@ -119,7 +119,6 @@ then return the original string.
 console.log("-------EXERCISE 5 USING ARROW-------")
 const strivify = (S) => {
     let str = S.startsWith("Strive");
-    console.log(str);
     if (str === true){
         return S;
     }else{
