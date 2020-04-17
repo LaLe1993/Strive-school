@@ -107,11 +107,11 @@ console.log(totalShoppingCart, "Price with 20% discount");
 // /* WRITE YOUR CODE HERE */
 
 console.log("-----EXERCISE 8-----");
-
+let licencePlateCar1 = 411;
 const car1 = {
     brand: "Audi",
     model: "R8",
-    licensePlate: "NS411-BA",
+    licensePlate: `NS${licencePlateCar1}-BA`,
 }
 
 const car2 = {};
