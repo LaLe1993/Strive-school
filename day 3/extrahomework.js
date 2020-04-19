@@ -13,7 +13,7 @@ es:
 */
 /* WRITE YOUR CODE HERE */
 console.log("-----EXERCISE 1-----");
-let myArray = [1,3,5,20,42,976];
+let myArray = [1,3,5,20,43,44,976];
 myArray.reverse();
 console.log(myArray);
 
@@ -53,35 +53,43 @@ console.log(evenArray);
 Write the code to delete the even entries from an array
 */
 /* WRITE YOUR CODE HERE */
-console.log("-----EXERCISE 1-----");
-
-for(index=0;index<myArray.length;index++){
-        if((myArray[index] % 2)===0){
-            myArray.splice(index,1);
-        }
-        else{
-            console.log(index);
+console.log("-----EXERCISE 5-----");
+let newArray = [1,3,5,42,43,44,976,877];
+for(index=0;index<newArray.length;index++){
+        if((newArray[index] % 2)===0){
+            newArray.splice(index,1);
+            index = index-=1;
         }
 }
-console.log(myArray);
+console.log(newArray);
 
 /* EXERCISE 6
 Write the code to remove all the vocal from a string
 */
 /* WRITE YOUR CODE HERE */
-console.log("-----EXERCISE 1-----");
+console.log("-----EXERCISE 6-----");
 /* EXERCISE 7
 Write the code to increase all the numeric values in a array by 1
 */
 /* WRITE YOUR CODE HERE */
-console.log("-----EXERCISE 1-----");
+console.log("-----EXERCISE 7-----");
+console.log(myArray);
+for (index=0;index<myArray.length;index++){
+    myArray[index] = myArray[index] + 1;
+}
+console.log(myArray);
 
 /* EXERCISE 8 
 Replace all the strings into an array by their length
 es.: [ "strive", "is", "good"] => [ 5 , 2, 4]
 */
 /* WRITE YOUR CODE HERE */
-console.log("-----EXERCISE 1-----");
+console.log("-----EXERCISE 8-----");
+myNewArray = [ "strive", "is", "good"];
+for (index=0;index<myNewArray.length;index++) {
+    myNewArray[index] = myNewArray[index].length;
+}
+console.log(myNewArray);
 /* WHEN YOU ARE FINISHED
 Send the code via Slack to the tutor! In the next days we'll also learn how to use GIT 
 */
