@@ -68,12 +68,20 @@ Write the code to remove all the vocal from a string
 */
 /* WRITE YOUR CODE HERE */
 console.log("-----EXERCISE 6-----");
+let str = `Da li je resenje ovoga stringa 5 ili 2`;
+for (index=0;index<str.length;index++){
+    if (parseFloat(str[index]) === NaN){
+        console.log("Juzni vetar")
+    }else{
+        console.log("aa")
+    }
+}
+console.log(parseFloat(str));
 /* EXERCISE 7
 Write the code to increase all the numeric values in a array by 1
 */
 /* WRITE YOUR CODE HERE */
 console.log("-----EXERCISE 7-----");
-console.log(myArray);
 for (index=0;index<myArray.length;index++){
     myArray[index] = myArray[index] + 1;
 }
