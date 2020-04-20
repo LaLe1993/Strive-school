@@ -86,7 +86,7 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
             Write a section with the address of the shop.
             [OPTIONAL] Link this address to Google Maps page.
         -->
-        <p>Our addres: <a href="https://goo.gl/maps/SaDGmmo3DKah5UqC8">Barber Shop 72</a></p>
+        <p>Our addres: <a href="https://goo.gl/maps/SaDGmmo3DKah5UqC8">Address: Barber Shop 72, 49 W 72nd St, New York, NY 10023, Сједињене Државе</a></p>
 
     <!-- EXERCISE 6: 
             Write a "Leave Email" form. 
@@ -125,7 +125,7 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
         -->
         <br>
         <p>Phone number: <input id="phoneNumber" type="text" placeholder="ex.:123 123 1234" required/></p>
-        <p>Date:<input id="date" type="text" placeholder="DD.MM.YYYY." required/></p>
+        <p>Date:<input id="date" type="date" required/></p>
         <p>Name:<input id="name" type="text" /></p>
         <input id="book_haircut" type="button" value="Book Haircut!" onclick="book_haircat()">
         <script>
@@ -136,13 +136,14 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
             }else if (document.querySelector("#date").value === ""){
               alert("Date must be filled!");
             }else{
-              if (/^\(?([0-9]{9,10})$/.test(document.querySelector("#phoneNumber").value) && /^\(?([0-9]{1,2})\)?[-. ]?([0-9]{1,2})[-. ]?([0-9]{4})$/.test(document.querySelector("#date").value)){
+              if (/^\(?([0-9]{9,10})$/.test(document.querySelector("#phoneNumber").value)){
                 if (document.querySelector("#name").value !== ""){
                   let phoneNumber = document.querySelector("#phoneNumber").value;
                   let date = document.querySelector("#date").value;
                   let name = document.querySelector("#name").value;
                   let reservation = {phoneNumber,date,name};
                   console.log(reservation);
+                  document.querySelector("#name").value = "";
                 }else{
                 let phoneNumber = document.querySelector("#phoneNumber").value;
                 let date = document.querySelector("#date").value;
@@ -151,7 +152,6 @@ Note: the form should just be implemented in HTML + CSS, no extra code needed.
                 }
                 document.querySelector("#phoneNumber").value = "";
                 document.querySelector("#date").value = "";
-                document.querySelector("#name").value = "";
               }else{
                 alert("Invalid phone number or date format!");
               }
