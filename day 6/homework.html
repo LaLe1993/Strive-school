@@ -47,7 +47,14 @@
          /* EXERCISE 5
          Write a function to add a new item ONLY to the second list
          */
-         function addToTheSecond1(content) {}
+         function addToTheSecond1(content) {
+          let item = document.querySelector("#secondList li");
+          let item2 = item.cloneNode(true);
+          item2.innerText = document.querySelector("#newSecondListItem").value;
+          let newItem = document.querySelector("#secondList");
+          newItem.appendChild(item2);
+         }
+
         function addToTheSecond() {
           let item = document.querySelector("#secondList li");
           let item2 = item.cloneNode(true);
@@ -60,7 +67,14 @@
         Write a function to add a second paragraph to the div
         */
        
-       function addParagraph1(content) {}
+       function addParagraph1() {
+        let secondParagraph = document.querySelector("div p");
+          let secondParagraph2 = secondParagraph.cloneNode(true);
+          secondParagraph2.innerText = document.querySelector("#newParagraph").value;
+          let newParagraph = document.querySelector("div");
+          newParagraph.appendChild(secondParagraph2);
+          document.querySelector("#newParagraph").value = "";
+       }
 
        function addParagraph() {
         let secondParagraph = document.querySelector("div p");
@@ -167,7 +181,8 @@ section:after {
       <input type="button" value="Change title!" onclick="changeTitle()" />
       <input type="button" value="Add class!" onclick="addClassToHeading()" />
       <h2>This is the subtitle of the page</h2>
-      <input type="button" value="Add paragraph!" onclick="addParagraph()" />
+      <input id="newParagraph" type="text" placeholder="Enter new paragraph here" />
+      <input type="button" value="Add custom paragraph!" onclick="addParagraph1()" />
     </div>
   </header>
     <div>
@@ -185,7 +200,8 @@ section:after {
         <li>2nd</li>
         <li>3rd</li>
       </ul>
-      <input type="button" value="Change title!" onclick="addToTheSecond()" />
+      <input id="newSecondListItem" type="text" placeholder="Enter new second list item here" />
+      <input type="button" value="Add item to list!" onclick="addToTheSecond1()" />
       <input type="button" value="Change ul background!" onclick="paintItGreen()" />
     </section>
       <section>
