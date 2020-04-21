@@ -47,27 +47,19 @@
          /* EXERCISE 5
          Write a function to add a new item ONLY to the second list
          */
-         function addToTheSecond1(content) {
+         function addToTheSecond(content) {
           let item = document.querySelector("#secondList li");
           let item2 = item.cloneNode(true);
           item2.innerText = document.querySelector("#newSecondListItem").value;
           let newItem = document.querySelector("#secondList");
           newItem.appendChild(item2);
          }
-
-        function addToTheSecond() {
-          let item = document.querySelector("#secondList li");
-          let item2 = item.cloneNode(true);
-          item2.innerText = "New list item!";
-          let newItem = document.querySelector("#secondList");
-          newItem.appendChild(item2);
-        }
         
         /* EXERCISE 6
         Write a function to add a second paragraph to the div
         */
        
-       function addParagraph1() {
+       function addParagraph() {
         let secondParagraph = document.querySelector("div p");
           let secondParagraph2 = secondParagraph.cloneNode(true);
           secondParagraph2.innerText = document.querySelector("#newParagraph").value;
@@ -76,13 +68,6 @@
           document.querySelector("#newParagraph").value = "";
        }
 
-       function addParagraph() {
-        let secondParagraph = document.querySelector("div p");
-          let secondParagraph2 = secondParagraph.cloneNode(true);
-          secondParagraph2.innerText = "This is a new paragraph to the div!";
-          let newParagraph = document.querySelector("div");
-          newParagraph.appendChild(secondParagraph2);
-       }
        /* EXERCISE 7
        Write a function to make the first UL disappear
        */
@@ -182,7 +167,7 @@ section:after {
       <input type="button" value="Add class!" onclick="addClassToHeading()" />
       <h2>This is the subtitle of the page</h2>
       <input id="newParagraph" type="text" placeholder="Enter new paragraph here" />
-      <input type="button" value="Add custom paragraph!" onclick="addParagraph1()" />
+      <input type="button" value="Add custom paragraph!" onclick="addParagraph()" />
     </div>
   </header>
     <div>
@@ -201,7 +186,7 @@ section:after {
         <li>3rd</li>
       </ul>
       <input id="newSecondListItem" type="text" placeholder="Enter new second list item here" />
-      <input type="button" value="Add item to list!" onclick="addToTheSecond1()" />
+      <input type="button" value="Add item to list!" onclick="addToTheSecond()" />
       <input type="button" value="Change ul background!" onclick="paintItGreen()" />
     </section>
       <section>
