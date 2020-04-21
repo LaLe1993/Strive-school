@@ -1,0 +1,212 @@
+<html>
+  <head>
+    <script>
+      /* EXERCISE 1
+      Write a function to change the document title of the page in something else
+      */
+     
+      function changeTitle(newTitle) {
+       let title = document.querySelector("#title h1");
+       title.innerText = "This is a new title!";
+      }
+      
+      /* EXERCISE 2
+      Write a function to change the class of the H1 on a page in "myHeading"
+      */
+     
+      function addClassToHeading() {
+       let newClass = document.querySelector("#title h1");
+       newClass.classList.add('myHeading');
+       console.log(document.querySelector("#title h1"));
+     }
+           
+           /* EXERCISE 3
+           Write a function to change the text of only the p which are child of a div
+           */
+          
+          function changePcontent() {
+            let textOfP = document.querySelectorAll("div p");
+            for (i=0;i<textOfP.length;i++){
+              let text = document.querySelectorAll("div p")[i];
+              text.innerText="New text for p inside DIV!"
+            }
+          }
+          
+          /* EXERCISE 4
+          Write a function to change the destination of every link to https://www.google.com
+          */
+         
+         function changeUrls() {
+           let newLink = document.querySelectorAll("a");
+           for (i=0;i<newLink.length;i++){
+            let link = document.querySelectorAll("a")[i];
+            link.setAttribute("href", "https://www.google.com");
+           console.log(link);
+         }
+        }
+         /* EXERCISE 5
+         Write a function to add a new item ONLY to the second list
+         */
+         function addToTheSecond1(content) {}
+        function addToTheSecond() {
+          let item = document.querySelector("#secondList li");
+          let item2 = item.cloneNode(true);
+          item2.innerText = "New list item!";
+          let newItem = document.querySelector("#secondList");
+          newItem.appendChild(item2);
+        }
+        
+        /* EXERCISE 6
+        Write a function to add a second paragraph to the div
+        */
+       
+       function addParagraph1(content) {}
+
+       function addParagraph() {
+        let secondParagraph = document.querySelector("div p");
+          let secondParagraph2 = secondParagraph.cloneNode(true);
+          secondParagraph2.innerText = "This is a new paragraph to the div!";
+          let newParagraph = document.querySelector("div");
+          newParagraph.appendChild(secondParagraph2);
+       }
+       /* EXERCISE 7
+       Write a function to make the first UL disappear
+       */
+      
+      function firstUlDisappear() {
+        document.getElementById("firstList").outerHTML = "";
+      }
+      /* EXERCISE 8
+      Write a function to make the background of every UL green
+      */
+     
+     function paintItGreen() {
+      let ul = document.querySelectorAll("ul");
+      for (i=0;i<ul.length;i++){
+            let newUl = document.querySelectorAll("ul")[i];
+            newUl.setAttribute("style", "background-color:green;");
+     }
+    }
+     /* EXERCISE 9
+     Make the heading of the page changing color every time the user clicks on it
+     */
+    
+    function makeItClickable() {
+      let random = document.querySelector("#title");
+        function getRandomColor() {
+         var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+          }
+         return color;
+        }
+      let newColor = getRandomColor();
+      random.setAttribute("style",`background-color:${newColor}`)
+    }
+    /* EXERCISE 10
+    Create a new welcome alert message when the page successfully loads
+    */
+   
+   window.onload = function welcomeAlert() {
+     alert("WELCOME TO MY PAGE!")
+  }
+
+  
+  /* EXERCISE 11
+  Use HTML5 tags to divide sections, headers etc 
+  */
+</script>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+header {
+  text-align: left;
+}
+.myHeading {
+    color: red;
+}
+section {
+  padding: 10px;
+  width:50%;
+  background-color: #dddddd;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+article {
+  padding: 10px;
+  float: left;
+  width: 50%;
+  background-color: #f1f1f1;
+}
+section:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+    <div id="title" onclick="makeItClickable()">
+      <h1>This is the title of the page</h1>
+      <input type="button" value="Change title!" onclick="changeTitle()" />
+      <input type="button" value="Add class!" onclick="addClassToHeading()" />
+      <h2>This is the subtitle of the page</h2>
+      <input type="button" value="Add paragraph!" onclick="addParagraph()" />
+    </div>
+  </header>
+    <div>
+      
+      <hr />
+      <section>
+      <ul id="firstList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+      <input type="button" value="Change title!" onclick="firstUlDisappear()" />
+      <ul id="secondList">
+        <li>1st</li>
+        <li>2nd</li>
+        <li>3rd</li>
+      </ul>
+      <input type="button" value="Change title!" onclick="addToTheSecond()" />
+      <input type="button" value="Change ul background!" onclick="paintItGreen()" />
+    </section>
+      <section>
+      <a href="strive.school">This link goes to Strive School</a><br/>
+      <input type="button" value="Change urls!" onclick="changeUrls()" />
+      
+      
+      <div>
+        <p>This text is just for the exercise</p>
+      </div>
+    </div>
+  </section>
+    <article>
+    <div>
+      <p>And this text is just for the exercise too!</p>
+    </div>
+    <input type="button" value="Change text!" onclick="changePcontent()" />
+  </article>
+  <footer>
+    <h3>Footer</h3>
+  </footer>
+  </body>
+  </html>
+  

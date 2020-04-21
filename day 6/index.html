@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -22,8 +22,11 @@
         margin: 5px;
         border: 1px solid #dedede;
       }
-      .newClass{
+      .newClass {
         font-size: 30px;
+      }
+      .genericClass {
+        background-color: blue;
       }
     </style>
   </head>
@@ -32,11 +35,13 @@
     <h1>Accessing Elements in the DOM</h1>
 
     <h2>ID (#demo)</h2>
-    <div id="democontainer"></div>
-    <div id="demo">
-      <p>Access me by ID</p>
+    <div id="demoContainer">
+      <div id="demo">
+        <p>Access me by ID</p>
+      </div>
     </div>
-    <input type="button" value="REPLICATE" onclick="replicate()" />
+    <input type="button" onclick="replicate()" value="REPLICATE" />
+
     <h2>Class (.demo)</h2>
     <div class="demo">
       Access me by class (1)
@@ -44,8 +49,11 @@
     <div class="demo">Access me by class (2)</div>
 
     <h2>Tag (article)</h2>
-    <article>Access me by tag (1)</article>
-    <article>Access me by tag (2)</article>
+    <div id="articleContainer">
+      <article>Access me by tag (1)</article>
+      <article>Access me by tag (2)</article>
+    </div>
+    <input type="button" onclick="createArticle()" value="CREATE" />
 
     <h2>Query Selector</h2>
     <div id="demo-query">Access me by query</div>
@@ -70,21 +78,45 @@
     </div>
     <a href="/inputs.html"> GO TO INPUTS</a>
     <script>
-      window.onload = function consoleMe(){
-      let demoParagraph = document.querySelector("#demo p");
-      console.log(document.querySelector("#demo"));
-      demoParagraph.innerText = "the text has changed";
-      document.querySelector("#demo p").innerText = "Change again!!";
-      demoParagraph.style.color = "red";
-      demoParagraph.classList.add("newClass");
-      demoParagraph.classList.remove("newClass");
+      window.onload = function () {
+        let demoParagraph = document.querySelector('#demo p')
+        console.log(demoParagraph)
+        demoParagraph.innerText = 'the text has changed!'
+        document.querySelector('#demo p').innerText = 'changed again!!'
+        demoParagraph.style.color = 'red'
+        demoParagraph.classList.add('newClass')
+//        demoParagraph.classList.remove('newClass')
       }
-      function replicate(){
-      let demo = document.querySelector("#demo");
-      let demo2 = demo.cloneNode(true);
-      let body = document.querySelector("#democontainer");
-      body.appendChild(demo2);
+      function replicate() {
+        let demo = document.querySelector('#demo')
+        let demo2 = demo.cloneNode(true)
+        let demoContainer = document.querySelector('#demoContainer')
+        demoContainer.appendChild(demo2)
       }
+      function createArticle() {
+        let random = Math.random() * 11
+        random = Math.floor(random)
+        let myNewArticle = document.createElement('article')
+        myNewArticle.innerText = "I've been created from scratch! " + random
+        myNewArticle.style.color = 'red'
+        myNewArticle.classList.add('genericClass')
+        myNewArticle.onclick = function (e) {
+          console.log('you clicked me!!')
+          console.log('EVENT INFO', e)
+        }
+        // element is completed but I need to attach it somewhere
+        let parent = document.querySelector('#articleContainer')
+        parent.appendChild(myNewArticle)
+      }
+      function getRandomColor() {
+         var letters = '0123456789ABCDEF';
+          var color = '#';
+          for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+          }
+         return color;
+         console.log(color);
+        }
     </script>
   </body>
 </html>
