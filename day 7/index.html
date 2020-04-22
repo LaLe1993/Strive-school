@@ -135,6 +135,9 @@
                                 case "/":
                                     result.value = dev(parseFloat(previousResult),parseFloat(result.value));
                                     break;
+                                case "n!":
+                                    result.value = fac(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
                                 case "p":
                                     result.value = power(parseFloat(previousResult),parseFloat(result.value));
                                     break;
@@ -143,9 +146,6 @@
                                     break;
                                 default:
                             }
-                            break;
-                        case "n!":
-                            result.value = fac(parseFloat(previousResult),parseFloat(result.value));
                             break;
                         case "C":
                             result.value = "0";
