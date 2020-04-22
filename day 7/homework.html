@@ -79,6 +79,7 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
 
    <script>
       function addNewTask() {
+         if(document.getElementById("newTask").value !== ""){
          let newElement = document.createElement("li");
          newElement.innerHTML= document.getElementById("newTask").value;
          newElement.setAttribute("class","spec");
@@ -91,6 +92,9 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
          - Use the document.createElement to create the new List Item
          - Append the child to the UL
          */
+        }else{
+           console.log("You must input something in input field!")
+        }
       }
       
       /* EXERCISE 6: 
@@ -151,8 +155,11 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
          - Break the code into many function for semplicity 
          - Reuse the functions previously created
       */
+     function erraseList (){
+        document.getElementById("myTaskList").innerHTML = "";
+     }
      function bubbleSort(listToSort){
-        if(document.querySelectorAll("#myTaskList li").length === 0){
+         if(document.querySelectorAll("#myTaskList li").length === 0){
            console.log("List is empty!");
          }else{
             listToSort = getTasksAsArray();
@@ -164,9 +171,17 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
              }
             newListToSort.sort();
             console.log(newListToSort);
-            return newListToSort;
+            document.getElementById("myTaskList").innerHTML = "";
+            for(i=0;i<newListToSort.length;i++){
+            let newElement = document.createElement("li");
+            newElement.setAttribute("class","spec");
+            newElement.innerHTML= newListToSort[i];
+            document.getElementById("myTaskList").appendChild(newElement);
          }
-      }
+         }
+         console.log("Radi li??")
+         }
+      
       
    </script>
 </body>
