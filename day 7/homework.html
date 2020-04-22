@@ -156,14 +156,15 @@ The have a list of tasks and can, at any time, add a new one, delete one or sort
            console.log("List is empty!");
          }else{
             listToSort = getTasksAsArray();
-            newListToSort = [];
-            for(i=0;i<listToSort.length;i++){
-               let arrayItem = listToSort[i];
-               let newArrayItem = arrayItem.toLowerCase();
-               newListToSort.push(newArrayItem);
-            }
+            let newListToSort = [];
+             for(i=0;i<listToSort.length;i++){
+                let arrayItem = listToSort[i];
+                let newArrayItem = arrayItem.toLowerCase();
+                newListToSort.push(newArrayItem);
+             }
             newListToSort.sort();
             console.log(newListToSort);
+            return newListToSort;
          }
       }
       
