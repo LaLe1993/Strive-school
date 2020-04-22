@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+    <head>
+        <title>Calculator</title>
+        <style>
+            body{
+                background: aliceblue;
+            }
+            #calculator{
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            table{
+
+            }
+            input[type=button]{
+                font-size: 40px;
+                width: 100px;
+                height: 100px;
+            }
+            #result{
+                font-size: 50px;
+                text-align: right;
+                width: 100%;
+                max-width: 408px;
+            }
+            .numericButton{
+                color: brown;
+            }
+            .functionButton{
+                background-color: rgb(187, 2, 2);
+            }
+        </style>
+    </head>
+    <body>
+        <div id="calculator">
+            <table>
+                <tr>
+                    <td colspan="4">
+                        <input type="text" value="0" id="result" disabled />
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="button" class="functionButton" value="√"></td>
+                    <td><input type="button" class="functionButton" value="n!"></td>
+                    <td><input type="button" class="functionButton" value="p"></td>
+                    <td><input type="button" class="functionButton" value="."></td>
+                </tr>
+                <tr>
+                    <td><input type="button" class="numericButton" value="7"></td>
+                    <td><input type="button" class="numericButton" value="8"></td>
+                    <td><input type="button" class="numericButton" value="9"></td>
+                    <td><input type="button" class="functionButton" value="X"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" class="numericButton" value="4"></td>
+                    <td><input type="button" class="numericButton" value="5"></td>
+                    <td><input type="button" class="numericButton" value="6"></td>
+                    <td><input type="button" class="functionButton" value="-"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" class="numericButton" value="1"></td>
+                    <td><input type="button" class="numericButton" value="2"></td>
+                    <td><input type="button" class="numericButton" value="3"></td>
+                    <td><input type="button" class="functionButton" value="+"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" class="functionButton" value="C"></td>
+                    <td><input type="button" class="numericButton" value="0"></td>
+                    <td><input type="button" class="functionButton" value="="></td>
+                    <td><input type="button" class="functionButton" value="/"></td>
+                </tr>
+            </table>
+        </div>
+        <script>
+            window.addEventListener("DOMContentLoaded",
+            function(){
+                console.log("DOM LOADED")
+                let operation = "";
+                let previousResult = 0;
+
+                const sum = function (x,y){
+                    return x + y;
+                }
+                const diff = function (x,y){
+                    return x - y;
+                }
+                const mul = function (x,y){
+                    return x * y;
+                }
+                const dev = function (x,y){
+                    return x / y;
+                }
+                const power = (x,y) => {
+                    let result = 1;
+                    for(i=0;i<y;i++){
+                        result *= x;
+                    }
+                    return result;
+                }
+                const sqrt = x => Math.sqrt(x);
+
+                const fac = n => {
+                    if(n <=0 || n===1) return 1
+                    else return(n * fac(n-1))
+                }
+
+                const inputDecimal = x => !x.includes(".") ? `${x}.`:`${x}`;
+                
+                const numericButtonPressed = function (event){
+                    const numberPressed = event.target.value;
+                    console.log(numberPressed);
+                    const result = document.getElementById("result");
+                    if (result.value === '0'){
+                        result.value = numberPressed;
+                    }else{
+                        result.value = result.value + numberPressed;
+                    }
+                }
+
+                const functionButtonPressed = function(event){
+                    const keyPressed = event.target.value;
+                    console.log(keyPressed);
+                    const result = document.getElementById("result");
+                    switch (keyPressed){
+                        case "=":
+                            switch (operation){
+                                case "+":
+                                    result.value = sum(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
+                                case "-":
+                                    result.value = diff(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
+                                case "X":
+                                    result.value = mul(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
+                                case "/":
+                                    result.value = dev(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
+                                case "p":
+                                    result.value = power(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
+                                case "√":
+                                    result.value = sqrt(parseFloat(previousResult),parseFloat(result.value));
+                                    break;
+                                default:
+                            }
+                            break;
+                        case "n!":
+                            result.value = fac(parseFloat(previousResult),parseFloat(result.value));
+                            break;
+                        case "C":
+                            result.value = "0";
+                            previousResult = 0;
+                            console.log("I'm the C button");
+                            break;
+                        case ".":
+                            result.value = inputDecimal(result.value)
+                            break;
+                        default:
+                            previousResult = parseFloat(result.value);
+                            operation = keyPressed;
+                            result.value = "0"
+                    }
+                }
+
+                const numericButtons = document.
+                getElementsByClassName("numericButton")
+                console.log(numericButtons);
+
+                const functionButtons = document.
+                getElementsByClassName("functionButton")
+                console.log(functionButtons);
+
+                for(let button of numericButtons){
+                    button.addEventListener("click",numericButtonPressed)
+                }
+                for(let button of functionButtons){
+                    button.addEventListener("click",functionButtonPressed)
+                }
+            })
+        </script>
+    </body>
+</html>
