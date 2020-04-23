@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Calendar</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&display=swap" />
+        <style>
+            body{
+                background-color: #313131;
+                color: #fa9e47;
+                font-family: "Nunito", sans-serif;
+                max-width: 760px;
+                margin: 0 auto;
+            }
+
+            #calendar{
+                width: 100%;
+                margin-bottom: 20px;
+                border: 1px solid wheat;
+            }
+
+            .day{
+                display: inline-block;
+                width: 150px;
+                text-align: center;
+                min-height: 100px;
+                border: 1px solid wheat;
+            }
+
+            .day:hover{
+                background-color: #5d5d5d;
+            }
+
+            h1{
+                text-align: center;
+                margin-top: 20px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            #addMeeting{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            #addMeeting div{
+                text-align: center;
+            }
+
+            input{
+                background-color: #fa9e47;
+                color: #313131;
+                border: 0;
+                padding: 10px;
+                font-weight: bold;
+            }
+
+            ::placeholder{
+                color: #313131;
+            }
+
+            .selected{
+                background-color:#fa9e47;
+                color: #313131;
+            }
+            .selected:hover{
+                background-color: #fa9e47;
+            }
+
+            #appointments {
+                display: none;
+            }
+
+            ul{
+                padding: 0%;
+                list-style-type: none;
+            }
+
+            li{
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Calendar</h1>
+        <div id="calendar"></div>
+        <h1>Add Meeting</h1>
+        <div id="addMeeting">
+            <div>
+                <h4>Day</h4>
+                <h4 id=newMeetingDay>Click on a day</h4>
+            </div>
+            <div>
+                <h4>Meeting time</h4>
+                <input type="time" id="newMeetingTime" />
+            </div>
+            <div>
+                <h4>Meeting name</h4>
+                <input type="text" id="newMeetingName" placeholder="Insert a name for a meeting" />
+            </div>
+            <div>
+                <h4>Add meeting</h4>
+                <input type="button" value="Save meeting" onclick="saveMeeting()" />
+            </div>
+        </div>
+        <div id="appointments">
+            <h1>Appointments for today: </h1>
+            <ul id="appointmentList"></ul>
+        </div>
+        <script>
+            var appointments = [];
+
+            window.onload = function (){
+                var numberOfDays = daysInThisMonth();
+                var calendar = document.querySelector("#calendar");
+                for(let i=0; i<numberOfDays; i++){
+                    appointments[i] = [];
+                    let child = document.createElement("div");
+                    child.className = "day";
+                    child.onclick = function(event){
+                        let selected = document.querySelector(".selected");
+                        if (selected){
+                            selected.className= selected.className.replace(" selected", "");
+                        }
+                        event.currentTarget.className += ' selected';
+                        console.log(i);
+                        document.querySelector("#newMeetingDay").innerText = i + 1;
+                    }
+                    let day = document.createElement("h3");
+                    let dayOfTheMonth = i+1;
+                    day.innerHTML = dayOfTheMonth;
+
+                    child.appendChild(day);
+                    calendar.appendChild(child);
+                }
+            }
+            function daysInThisMonth(){
+                let now = new Date();
+                console.log(new Date(now.getFullYear(), now.getMonth()+1,0).getDate())
+                return new Date(now.getFullYear(), now.getMonth()+1,0).getDate();
+            }
+            function saveMeeting(){
+                let meetingDay = document.querySelector("#newMeetingDay").innerText;
+                let meetingTime = document.querySelector("#newMeetingTime");
+                let meetingName = document.querySelector("#newMeetingName");
+
+                appointments[parseInt(meetingDay) - 1].push(meetingTime.value + " - " + meetingName.value)
+                meetingTime.value = "";
+                meetingName.value = "";
+                console.log("Appointments for today: ",appointments)
+                showAppointments(parseInt(meetingDay))
+            }
+             function showAppointments(day){
+                 let todaysAppointments = appointments[day - 1];
+                 document.querySelector("#appointments").style.display = "block";
+                 let appointmentList = document.querySelector("#appointmentList");
+
+                 for(let i=0;i<todaysAppointments.length;i++){
+                     let li = document.createElement("li");
+                     li.innerHTML = todaysAppointments[i];
+                     appointmentList.appendChild(li);
+                 }
+             }
+        </script>
+    </body>
+</html>
