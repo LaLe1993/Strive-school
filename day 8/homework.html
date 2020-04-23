@@ -10,6 +10,157 @@
         - Create a USER BOARD with random 24 numbers that highlights as the main board does
         - Let the user choose HOW MANY user boards he's willing to play with and create them.
     -->
-  <head></head>
-  <body></body>
-</html>
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <title>BINGO</title>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito&display=swap" />
+            <style>
+                body{
+                    background-color: #313131;
+                    color: #fa9e47;
+                    font-family: "Nunito", sans-serif;
+                    max-width: 1330px;
+                    margin: 0 auto;
+                }
+                
+                #wholeBoard{
+                    display: inline-block;
+                }
+
+
+                #mainBoard{
+                    width: 100%;
+                    border: 1px solid wheat;
+                }
+                
+                .bingoNumber{
+                    display: inline-block;
+                    width: 68px;  
+                    text-align: center;
+                    min-height: 70px;
+                    border: 1px solid wheat;
+                }
+    
+                #randomButton {
+                    width: 300px;
+                    margin-left: 515px;
+                    margin-bottom: 20px;
+                    border: 2px solid wheat;
+                }
+
+                #randomButton:hover{
+                  background-color: #ffc284;
+                }
+    
+                h1{
+                    text-align: center;
+                    margin-top: 20px;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+                
+                #randomNumber{
+                    width: 300px;  
+                    text-align: center;
+                    min-height: 300px;
+                    border: 1px solid wheat;
+                }
+
+                /* #randomNumber p{
+                  padding-top: 50px;
+                } */
+
+                #largeNumber{
+                  display: inline-block;
+                  text-align: center;
+                  font-size: 70px;
+                }
+
+                .randomBingoNumber{
+                    display: inline-block;
+                    width: 99%;
+                    text-align: center;
+                    min-height: 50px;
+                    border: 1px solid wheat;
+                }
+    
+                input{
+                    background-color: #fa9e47;
+                    color: #313131;
+                    border: 0;
+                    padding: 10px;
+                    font-weight: bold;
+                }
+
+                .selected{
+                    background-color:#fa9e47;
+                    color: #313131;
+                }   
+            </style>
+        </head>
+        <body>
+            <h1>BINGO MAIN BOARD</h1>
+            <div id="wholeBoard">
+              <div id="mainBoard"></div>
+              <input type="button" value="NEXT NUMBER" onclick="randomNumberGenerator76()" id="randomButton" >
+                <div id="randomNumber">
+                  <div class="randomBingoNumber"><h3>New bingo number</h3></div>
+                <div id="largeNumber"></div>
+              </div>
+            </div>
+            <script>
+                var numbers = [];
+                var numbersThatPassed = [];
+    
+                window.onload = function (){
+                    var mainBoard = document.querySelector("#mainBoard");
+                    for(let i=0; i<76; i++){
+                        let child = document.createElement("div");
+                        child.className = "bingoNumber";
+                        let bingoNumber = document.createElement("h3");
+                        let nextBingoNumber = i+1;
+                        bingoNumber.innerHTML = nextBingoNumber;
+                        
+                        child.appendChild(bingoNumber);
+                        mainBoard.appendChild(child);
+                        numbers.push(nextBingoNumber);
+                      }
+                    }
+
+                function randomNumberGenerator24(){
+                  let arr = [];
+                  while(arr.length < 24){
+                    let r = Math.floor(Math.random() * 76) + 1;
+                    if(arr.indexOf(r) === -1) arr.push(r);
+                  }
+                  console.log(arr);
+                }
+
+                function randomNumberGenerator76(){
+                  let largeNumber = document.querySelector("#largeNumber");
+                  do {
+                  var ranNumber = Math.floor(Math.random() * 76) + 1;
+                  largeNumber.innerHTML = "";
+                  let numRandom = document.createElement("p");
+                  numRandom.innerHTML=ranNumber;
+                  largeNumber.appendChild(numRandom);
+                  } while(numbersThatPassed.includes(ranNumber));
+                  if (ranNumber === parseInt(numbers[ranNumber - 1])){
+                    let sum = document.getElementsByClassName("bingoNumber")[ranNumber - 1];
+                    sum.className += " selected";
+                  }
+                  if (numbersThatPassed.length==75){
+                    let newGame = document.getElementById("randomButton");
+                    newGame.value = "New BINGO game? Press here!";
+                    numbersThatPassed = [];
+                    
+                  }else{
+                  numbersThatPassed.push(ranNumber);
+                  console.log(document.getElementById("randomButton").value);
+                  }
+                }
+            </script>
+        </body>
+    </html>
