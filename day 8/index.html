@@ -59,7 +59,9 @@
             ::placeholder{
                 color: #313131;
             }
-
+            .withEvent{
+                color: #f63d37;
+            }
             .selected{
                 background-color:#fa9e47;
                 color: #313131;
@@ -81,6 +83,8 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
+            
         </style>
     </head>
     <body>
@@ -125,8 +129,16 @@
                             selected.className= selected.className.replace(" selected", "");
                         }
                         event.currentTarget.className += ' selected';
-                        console.log(i);
                         document.querySelector("#newMeetingDay").innerText = i + 1;
+
+                        let todaysAppointments = appointments[i] // finding the appointments for the day in the appointments array
+                        if (todaysAppointments.length > 0) {
+                         // if we have any event for that day
+                            showAppointments(i + 1) // invoking showAppointments passing the day of the month as the parameter
+                        } else {
+                        // if we DON'T have any event for that day
+                            document.querySelector('#appointments').style.display = 'none' // hide the appointments sections
+                        }
                     }
                     let day = document.createElement("h3");
                     let dayOfTheMonth = i+1;
@@ -138,30 +150,32 @@
             }
             function daysInThisMonth(){
                 let now = new Date();
-                console.log(new Date(now.getFullYear(), now.getMonth()+1,0).getDate())
                 return new Date(now.getFullYear(), now.getMonth()+1,0).getDate();
             }
             function saveMeeting(){
                 let meetingDay = document.querySelector("#newMeetingDay").innerText;
                 let meetingTime = document.querySelector("#newMeetingTime");
                 let meetingName = document.querySelector("#newMeetingName");
+                
+                let calendar = document.querySelector('#calendar');
+                let dayCell = calendar.children[parseInt(meetingDay) - 1];
+                dayCell.classList.add('withEvent');
 
                 appointments[parseInt(meetingDay) - 1].push(meetingTime.value + " - " + meetingName.value)
                 meetingTime.value = "";
                 meetingName.value = "";
-                console.log("Appointments for today: ",appointments)
-                showAppointments(parseInt(meetingDay))
+                showAppointments(parseInt(meetingDay));
             }
              function showAppointments(day){
-                 let todaysAppointments = appointments[day - 1];
-                 document.querySelector("#appointments").style.display = "block";
-                 let appointmentList = document.querySelector("#appointmentList");
-
-                 for(let i=0;i<todaysAppointments.length;i++){
-                     let li = document.createElement("li");
-                     li.innerHTML = todaysAppointments[i];
-                     appointmentList.appendChild(li);
-                 }
+                let todaysAppointments = appointments[day - 1];
+                document.querySelector("#appointments").style.display = "block";
+                let appointmentList = document.querySelector("#appointmentList");
+                appointmentList.innerHTML = ''
+                for(let i=0;i<todaysAppointments.length;i++){
+                    let li = document.createElement("li");
+                    li.innerHTML = todaysAppointments[i];
+                    appointmentList.appendChild(li);
+                }
              }
         </script>
     </body>
