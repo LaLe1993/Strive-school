@@ -110,11 +110,19 @@
                 <div id="largeNumber"></div>
               </div>
             </div>
+            <div>
+              <div><h1>Your tickets:</h1></div>
+              <input type="button" id="buyTicketButton" value="BUY TICKET!" onclick="buyTickets()">
+              <input type="button" id="restrtGame" value="Restart game!" onclick="newGame()">
+              <div id="tickets"></div>
+              
+            </div>
             <script>
                 var numbers = [];
                 var numbersThatPassed = [];
+                var tickets=[];
     
-                window.onload = function (){
+                window.onload = function startGame(){
                     var mainBoard = document.querySelector("#mainBoard");
                     for(let i=0; i<76; i++){
                         let child = document.createElement("div");
@@ -129,14 +137,16 @@
                       }
                     }
 
-                function randomNumberGenerator24(){
-                  let arr = [];
-                  while(arr.length < 24){
-                    let r = Math.floor(Math.random() * 76) + 1;
-                    if(arr.indexOf(r) === -1) arr.push(r);
-                  }
-                  console.log(arr);
-                }
+                    function randomNumberGenerator24(){
+                      var arr = [];
+                      while(arr.length < 24){
+                        var r = Math.floor(Math.random() * 76) + 1;
+                        if(arr.indexOf(r) === -1)
+                        {arr.push(r)};
+                      }
+                      tickets.push(arr)
+                      return arr;
+                    }
 
                 function randomNumberGenerator76(){
                   let largeNumber = document.querySelector("#largeNumber");
@@ -153,13 +163,15 @@
                   }
                   if (numbersThatPassed.length==75){
                     let newGame = document.getElementById("randomButton");
-                    newGame.value = "New BINGO game? Press here!";
-                    numbersThatPassed = [];
-                    
+                    newGame.value = "All numbers are selected!";                    
                   }else{
                   numbersThatPassed.push(ranNumber);
                   console.log(document.getElementById("randomButton").value);
                   }
+
+                }
+                    function newGame(){
+                      window.location.reload();
                 }
             </script>
         </body>
