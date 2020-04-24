@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport">
-    <title>Banchmark B</title>
+    <title onclick="deleteLetter()">Banchmark B</title>
     <style>
+        head, title { 
+            display: block;
+        }
         body{
             max-width: 1000px;
             margin: 0 auto;
@@ -22,6 +25,8 @@
             border: 1px solid;
             border-radius: 20px;
             padding: 6px;
+            width: 100%;
+            text-align: center;
         }
         tr{
             outline: 1px dotted red;
@@ -54,12 +59,14 @@
         <li>Item 3</li>
     </ol>
     <hr>
+    <input type="button" onclick="hideShowTable()" value="Hide or show table!" />
+    <hr>
     <table>
         <tr>
             <td>Row 1 - colum 1</td>
-            <td style="background-image: url(https://i.pinimg.com/originals/d2/7a/3c/d27a3cf727ad4fabdce0a1ca74c3fbae.jpg)">Row 1 - colum 2</td>
+            <td><img src="https://i.pinimg.com/originals/d2/7a/3c/d27a3cf727ad4fabdce0a1ca74c3fbae.jpg" alt="Slika nije ucitana" width="50px" height="50px">Row 1 - colum 2</td>
             <td>Row 1 - colum 3</td>
-            <td style="background-image: url(https://i.pinimg.com/474x/43/04/42/430442b8cd4fdb136b5de3108d99265f.jpg);">Row 1 - colum 4</td>
+            <td><img src="https://i.pinimg.com/474x/43/04/42/430442b8cd4fdb136b5de3108d99265f.jpg" alt="Slika nije ucitana" width="50px" height="50px"> Row 1 - colum 4</td>
             <td>Row 1 - colum 5</td>
         </tr>
         <tr>
@@ -77,15 +84,15 @@
             <td>Row 3 - colum 5</td>
         </tr>
         <tr>
-            <td>Row 4 - colum 1</td>
-            <td>Row 4 - colum 2</td>
-            <td>Row 4 - colum 3</td>
+            <td>41</td>
+            <td>42</td>
+            <td>43</td>
             <td colspan="2">Row 4 - colum 4 and 5</td>
         </tr>
     </table>
     <hr/>
-    <a href="https://i.pinimg.com/originals/d2/7a/3c/d27a3cf727ad4fabdce0a1ca74c3fbae.jpg">Image in row 1 cell 2</a>
-    <a href="https://i.pinimg.com/474x/43/04/42/430442b8cd4fdb136b5de3108d99265f.jpg">Image in row 1 cell 4</a>
+    <a href="https://i.pinimg.com/originals/d2/7a/3c/d27a3cf727ad4fabdce0a1ca74c3fbae.jpg" onmouseover="alert('https://i.pinimg.com/originals/d2/7a/3c/d27a3cf727ad4fabdce0a1ca74c3fbae.jpg')">Image in row 1 cell 2</a>
+    <a href="https://i.pinimg.com/474x/43/04/42/430442b8cd4fdb136b5de3108d99265f.jpg" onmouseover="alert('https://i.pinimg.com/474x/43/04/42/430442b8cd4fdb136b5de3108d99265f.jpg')">Image in row 1 cell 4</a>
     <hr/>
     <div id="container">
         <p>Nested paragraph inside div!</p>
@@ -97,6 +104,7 @@
     </div>
     <hr/>
     <input type="button" onclick="createText()" value="Create text!" />
+    <input type="button" onclick="removeImg()" value="Remove images!" />
     <footer>
         <h3>Strahinja Lalovic</h3>
         <p>21000, Novi Sad, Serbia</p>
@@ -142,6 +150,7 @@
         // EXERCISE 38
         window.onload = function(){
             console.log("Page loaded")
+            console.log(document.querySelector("title").innerText)
         }
         // EXERCISE 39
         function addToUl(){
@@ -156,7 +165,49 @@
             myList.innerHTML = "<p>Ordered list is now empty!</p>";
             console.log(myList);
         }
-    </script>
+        // ECERCISE 41 PARTLY DONE IN HTML
+        // EXERCISE 42
+        function removeImg(){
+            let images = document.getElementsByTagName('img');
+            let l = images.length;
+            for (let i = 0; i < l; i++) {
+                images[0].parentNode.removeChild(images[0]);
+            }
+        }
+        // EXERCISE 43
+        function hideShowTable(){
+            var x = document.querySelector("table");
+            if (x.style.display === "none") {
+                x.style.display = "";
+            } else {
+                x.style.display = "none";
+            }
+        }
+        //EXERCISE 44
+        function sumOfTds(){
+            let newArrayHere = [];
+            for (let i =0;i<document.querySelectorAll("td").length;i++){
+                let number = document.querySelectorAll("td")[i].innerText;
+                if(isNaN(number)){}else{
+                    newArrayHere.push(parseInt(number));
+                }
+            }
+            let sum = newArrayHere.reduce(myFunc);
+            return sum;
+        }
+        function myFunc(total, num) {
+            return total + num;
+        }
+        //EXERCISE 45
+        function deleteLetter(){
+            let titleValue = document.querySelector("title").innerText;
+            let newTitle = titleValue.slice(0, titleValue.length-1);
+            document.querySelector("title").innerText = newTitle;
+            console.log(document.querySelector("title").innerText);
+        }
+        //EXERCISE 46
+        
+        </script>
 </body>
 </html>
 <!--

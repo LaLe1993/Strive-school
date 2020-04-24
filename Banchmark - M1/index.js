@@ -93,7 +93,7 @@ console.log("--------------EXERCISE 30--------------")
             console.log(a);
             return a;
         }else if(sumA === sumB){
-            console.log("Array a and array b have same sum values!")
+            console.log("Array a and array b have same sum values!");
         }else{
             console.log(b);
             return b;
