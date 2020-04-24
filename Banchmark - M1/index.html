@@ -46,6 +46,9 @@
             /*visibility: hidden;*/
             display: none;
         }
+        .selected{
+            background-color: greenyellow;
+        }
 
     </style>
 </head>
@@ -206,6 +209,15 @@
             console.log(document.querySelector("title").innerText);
         }
         //EXERCISE 46
+        function backgroundColorTd(){
+            let randomTd = document.querySelectorAll("td");
+            for(let i=0;i<randomTd.length;i++){
+                if(randomTd[i].contains(onclick)){
+                }else{
+                randomTd[i].setAttribute("click",function(){randomTd[i].classList.add("selected");})     
+            }
+            }
+        }
         
         </script>
 </body>
