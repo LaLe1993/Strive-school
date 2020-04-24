@@ -63,6 +63,7 @@
     </ol>
     <hr>
     <input type="button" onclick="hideShowTable()" value="Hide or show table!" />
+    <input type="button" onclick="backgroundColorTd()" value="Add backgroun to table elements" />
     <hr>
     <table>
         <tr>
@@ -214,7 +215,7 @@
             for(let i=0;i<randomTd.length;i++){
                 if(randomTd[i].contains(onclick)){
                 }else{
-                randomTd[i].setAttribute("click",function(){randomTd[i].classList.add("selected");})     
+                randomTd[i].setAttribute("class","selected")     
             }
             }
         }
