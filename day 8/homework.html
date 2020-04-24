@@ -120,7 +120,7 @@
             <script>
                 var numbers = [];
                 var numbersThatPassed = [];
-                var tickets=[];
+                var tickets = [];
     
                 window.onload = function startGame(){
                     var mainBoard = document.querySelector("#mainBoard");
@@ -146,7 +146,7 @@
                       }
                       tickets.push(arr)
                       return arr;
-                    } 
+                    }
 
                 function randomNumberGenerator76(){
                   let largeNumber = document.querySelector("#largeNumber");
@@ -165,13 +165,12 @@
                     let newGame = document.getElementById("randomButton");
                     newGame.value = "All numbers are selected!";                    
                   }else{
-                  numbersThatPassed.push(ranNumber);
-                  console.log(document.getElementById("randomButton").value);
+                    numbersThatPassed.push(ranNumber);
+                    console.log(document.getElementById("randomButton").value);
                   }
-
                 }
-                    function newGame(){
-                      window.location.reload();
+                function newGame(){
+                  window.location.reload();
                 }
             </script>
         </body>
