@@ -43,9 +43,9 @@ console.log("--------------EXERCISE 26--------------")
 console.log("--------------EXERCISE 27--------------")
     const maxMin = function(){
         let maxValue = Math.max(...random100);
-        console.log(maxValue);
+        console.log("Max value is: ", + maxValue);
         let minValue = Math.min(...random100)
-        console.log(minValue);
+        console.log("Min value is: ", + minValue);
     }
     maxMin();
 
