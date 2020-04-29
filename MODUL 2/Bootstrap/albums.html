@@ -148,6 +148,15 @@ Could be the Amazon way, the Spotity or Apple music way or some other blog out t
                 </div>
             </div>
         </div>
+        <button type="button" class="btn btn-secondary onTopToll" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+            Tooltip on top
+          </button>
+          <button type="button" class="btn btn-primary onTopToll" data-toggle="tooltip" data-placement="top" title="Tooltip on for primary top">
+            Tooltip on top
+          </button>
+          <button type="button" class="btn btn-secondary onTopToll" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+            Tooltip on top
+          </button>
     
         <!-- EXERCISE 5
             Create a section for the album review.
@@ -257,7 +266,7 @@ Could be the Amazon way, the Spotity or Apple music way or some other blog out t
                         </div>
                     </div>
                 </div>
-                    <div class="col-12 col-md-4 card" style="height: 600px; padding-top: 15px;">    
+                    <div class="col-12 col-md-4 card mb-4" style="height: 600px; padding-top: 15px;">    
                         <img src="https://www.udiscovermusic.com/wp-content/uploads/2017/07/Queen-A-Night-At-The-Opera-album-cover-with-border-web-optimised-820.jpg" class="card-img-top" alt="..." />
                         <div class="card-body">
                             <div class="row">
@@ -295,20 +304,23 @@ Could be the Amazon way, the Spotity or Apple music way or some other blog out t
             Create a tapestry of album pictures. Every album picture must be "square" (use CSS to do that).
             Put at least 20 covers (also repeated) to have a nice effect and see how Bootstrap handles it.
         -->
-        
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                      <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="d-block w-100" alt="...">
+        <div class="row">
+            <div class="col-4 col-offset-4">
+                <div id="carouselExampleSlidesOnly" class="carousel slide border" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="d-block w-100" alt="...">
+                      </div>
+                    </div>
                   </div>
-                  <div class="carousel-item">
-                    <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-              </div>
+            </div>
+        </div>
         
 
 
@@ -316,30 +328,35 @@ Could be the Amazon way, the Spotity or Apple music way or some other blog out t
         <!-- EXERCISE 9
             Implement a footer with some information / social links
         -->
-        <div class="row" style="margin-top: 100px;">
-            <div class="col fixed-bottom" style="text-align: center; background-color: #212529; color: white; padding-top: 15px;">
-            <blockquote class="blockquote mb-0">
-              <p>Strahinja Lalović</p>
-              <p>Email: strahinjalalovic93@gmail.com</p>
-            </blockquote>
-          </div>
-        </div>
         <!-- EXERCISE 10
             Every time the user clicks on a album picture, toggle the album details
         -->
-
+        
         <!-- EXERCISE 11
             Add a button to each section. By clicking on it the section appears (if hidden) or disappears (if visible)
         -->
-
+        
         <!--
             EXERCISE 12
             Add in the footer a field that counts, on page load, how many ALBUMS are on the page 
         -->
-    
+        
+    </div>
+    <div class="row" style="margin-top: 100px;">
+        <div class="col" style="text-align: center; background-color: #212529; color: white; padding-top: 15px;">
+        <blockquote class="blockquote mb-0">
+          <p>Strahinja Lalović</p>
+          <p>Email: strahinjalalovic93@gmail.com</p>
+        </blockquote>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        window.onload = function(){
+            $('.onTopToll').tooltip()
+        }
+    </script>
   </body>
 </html>
