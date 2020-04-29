@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+        ASSIGNMENT RULES
+        - This is exercise should be done in couples
+        - Implement one exercise each
+        - We suggest you to use Slack or Google Hangouts to speak to each other
+
+        - The solution must be pushed to the repository and be available for the tutors by the end of the day
+        - You can ask for tutor's help
+        - You can google / use StackOverflow BUT we suggest you to use just the material provided
+        - To test the page, just open it with your default browser.
+        - Use Bootstrap4 classes to render the page.
+        - Use correctly containers and rows in order to have a great display
+
+
+        You are implementing a website for a Travel Agency.
+        In the page you can add all the destination you'd like to go in the next future!
+
+
+        Ex 1) Implement a navigation bar, connected to all the sections of the page. 
+        Ex 2) Add a logo into the navigation bar 
+        Ex 3) Add a Jumbotron section in which you present name and claim of the tour operator
+        Ex 4) Implement the "Deal of the Week" section. In this section you'll display 4 destinations.
+         In this section you should have:
+            - 4 destinations per row when the screen is very large
+            - 3 destinations per row when you are on a tablet (or a smaller window)
+            - 2 destinations per row when you are on a small screen
+
+        Ex 5) Implement the "Welcome Summer" section. In this section you'll propose 6 destinations
+            In this section you should have:
+                - 6 destinations per row when the screen is very large
+                - 3 destinations per row when you are on a tablet (or a smaller window)
+                - 2 destinations per row when you are on a small screen
+        
+        Ex 6) Implement a "Deal of the day" section. In this section you'll have:
+            - 66% of the page with a picture of the destination
+            - 33% with Name, dates, price and a short description
+
+        Ex 7) Make the "Deal of the day" section disappear when the user is mobile
+        Ex 8) Add to the Welcome Summer destinations a large shadow
+        Ex 9) Create a section Last Minute, in which you'll display the pictures from the destinations as Cards
+        Ex 10) Create a "Testimonial" section, in which the user can find several feedback from fake customers
+        Ex 11) Create a footer with the company information and a button "contact us"
+
+        Ex 11) Create a button next to each section to collapse and reopen the given section
+        Ex 12) Create a method that counts the number of "travels" on the page
+        Ex 13) Create a modal view with a message and a email field
+        Ex 14) When the user clicks on "contact us" the modal is displayed
+        Ex 15) Create a function that adds a "HOT" badge to all the "Welcome Summer" offers
+        Ex 16) Create a function to delete all "cards" from the page
+      -->
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <style>
+      h2{
+        text-align: center;
+        margin-bottom: 20px;
+        border: 1px solid;
+      }
+
+      table {
+        border: 2px solid;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      th {
+        border: 2px solid;
+      }
+      td {
+        border: 2px solid;
+        text-align: center;
+      }
+
+      
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        <img src="https://i.pinimg.com/originals/e9/5a/ca/e95aca64384ef4a99fc1818d0a92947c.png" width="30" height="30" alt="">
+      </a>
+      <a class="navbar-brand" href="#">Fly Easy</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav"> 
+          
+          <a class="nav-item nav-link" href="#Jumbotron">Jumbotron <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="#DealOfWeek">Deal of the Week</a>
+          <a class="nav-item nav-link" href="#Welcome">Welcome Summer</a>
+          <a class="nav-item nav-link" href="#dealOfDay">Deal of the day</a>
+          <a class="nav-item nav-link" href="#lastMinute">Last minute</a>
+          <a class="nav-item nav-link" href="#testemonials">Testimonial</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="jumbotron" style="margin-top: 80px;">
+        <h1 class="display-4">Fly Easy</h1>
+        <p class="lead">We will make sure you are completely satisfied!</p>
+        <hr class="my-4">
+        <p>Join us and enjoy.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+      </div>
+      <h2 id="DealOfWeek">Deal of the Week</h2>
+      <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+          <h3>Bremen</h3>
+          <img src="https://www.kurzurlaub.de/img/statisch_teaser/de//bundesland-kurzreisen-bremen.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">      
+          <h3>Bali</h3>
+          <img src="https://pix10.agoda.net/hotelImages/255129/-1/4be994f3bf41842cbef6626c815d18a5.jpg?s=1024x768" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+        <h3>Belgrade</h3>
+          <img src="https://www.telegraph.co.uk/content/dam/Travel/2017/February/belgrade_city_2_D2JREH.jpg" class="img-fluid" alt="Responsive image">          
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+        <h3>Dubai</h3>
+          <img src="https://images.musement.com/cover/0002/45/dubai-skyline-at-dusk-jpg_header-144981.jpeg?&q=60&fit=crop" class="img-fluid" alt="Responsive image">          
+        </div>
+      </div>
+
+      <h2 id="Welcome">Welcome Summer</h2>
+      <div class="row row-cols-2 row-cols-sm-3 row-cols-md-3 row-cols-lg-6 shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="col-sm border mb-4" style="padding-bottom: 15px;">      
+          <h3>Bali</h3>
+          <img src="https://pix10.agoda.net/hotelImages/255129/-1/4be994f3bf41842cbef6626c815d18a5.jpg?s=1024x768" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+        <h3>Belgrade</h3>
+          <img src="https://www.telegraph.co.uk/content/dam/Travel/2017/February/belgrade_city_2_D2JREH.jpg" class="img-fluid" alt="Responsive image">          
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+        <h3>Dubai</h3>
+          <img src="https://images.musement.com/cover/0002/45/dubai-skyline-at-dusk-jpg_header-144981.jpeg?&q=60&fit=crop" class="img-fluid" alt="Responsive image">          
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+          <h3>Amsterdam</h3>
+          <img src="https://www.vivatravel.rs/photo/87791/p/16:10" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+          <h3> Cairo </h3>
+          <img src="https://dimg04.c-ctrip.com/images/100d15000000xlegeAB97_C_750_350.jpg?proc=source%2Ftrip" class="img-fluid" alt="Cairo image">
+        </div>        
+        <div class="col-sm border mb-4" style="padding-bottom: 15px;">
+          <h3>New York</h3>
+          <img src="https://static.travelweekly.com/i/sized/780/437/images.ntmllc.com/v4/destination/United-States/New-York/112100_SCN_NewYork_iStock901277560_ZAB1A1.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+      </div>
+      <h2 id="dealOfDay" class="d-none d-md-block">Deal of the day</h2>
+      <div class="row">
+        <div class="col-md-8 border mb-4  d-none d-md-block" style="padding-bottom: 15px; padding-top: 15px;">          
+          <img src="https://www.kurzurlaub.de/img/statisch_teaser/de//bundesland-kurzreisen-bremen.jpg" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-md-4 border mb-4  d-none d-md-block" style="padding-bottom: 15px; padding-top: 15px;">          
+            <h2>2 Nights Bremen</h2>
+            <table>
+              <tr>
+                <th>Dates</th>
+                <th>01.06. - 03.06.</th>
+                <th>08.06. - 10.06.</th>
+              </tr>
+              <tr>
+                <th>Lux</th>
+                <td>299$</td>
+                <td>289$</td>
+              </tr>
+              <tr>
+                <th>Standard</th>
+                <td>199$</td>
+                <td>169$</td>
+              </tr>
+              <tr>
+                <th>Ocean view</th>
+                <td>567$</td>
+                <td>599$</td>
+              </tr>
+            </table>
+          <p>Offers you can't beat</p>
+                             
+        </div>
+      </div>
+      <h2 id="lastMinute">Last Minute</h2>
+      <div class="card mb-4">
+        <div class="card-header">
+          Bremen
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col mb-4">
+              <img src="https://www.kurzurlaub.de/img/statisch_teaser/de//bundesland-kurzreisen-bremen.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://www.kurzurlaub.de/img/statisch_teaser/de//bundesland-kurzreisen-bremen.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://www.kurzurlaub.de/img/statisch_teaser/de//bundesland-kurzreisen-bremen.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://www.kurzurlaub.de/img/statisch_teaser/de//bundesland-kurzreisen-bremen.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          Bali
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col mb-4">
+              <img src="https://pix10.agoda.net/hotelImages/255129/-1/4be994f3bf41842cbef6626c815d18a5.jpg?s=1024x768" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://pix10.agoda.net/hotelImages/255129/-1/4be994f3bf41842cbef6626c815d18a5.jpg?s=1024x768" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://pix10.agoda.net/hotelImages/255129/-1/4be994f3bf41842cbef6626c815d18a5.jpg?s=1024x768" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://pix10.agoda.net/hotelImages/255129/-1/4be994f3bf41842cbef6626c815d18a5.jpg?s=1024x768" class="img-fluid" alt="Responsive image">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header">
+          Belgrade
+        </div>
+        <div class="card-body">
+          <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
+            <div class="col mb-4">
+              <img src="https://www.telegraph.co.uk/content/dam/Travel/2017/February/belgrade_city_2_D2JREH.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://www.telegraph.co.uk/content/dam/Travel/2017/February/belgrade_city_2_D2JREH.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://www.telegraph.co.uk/content/dam/Travel/2017/February/belgrade_city_2_D2JREH.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+            <div class="col mb-4">
+              <img src="https://www.telegraph.co.uk/content/dam/Travel/2017/February/belgrade_city_2_D2JREH.jpg" class="img-fluid" alt="Responsive image">
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 id="testemonials">Testemonials</h2>
+      <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+        <div class="col mb-4">
+          <div class="card">
+            <img src="https://images.emojiterra.com/google/android-10/512px/1f9d1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Strahinja</h5>
+              <p class="card-text">Awesome company! Grate prices and service!</p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img src="https://hotemoji.com/images/dl/r/older-person-emoji-by-google.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Jane Doe</h5>
+              <p class="card-text">Got me a flight within the hour</p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img src="https://i.pinimg.com/originals/e2/b2/5f/e2b25f4d4c7f4fa85da164d12612f96a.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Solomon</h5>
+              <p class="card-text">I can only recommend. Great services.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col mb-4">
+          <div class="card">
+            <img src="https://images.emojiterra.com/google/android-pie/512px/1f9d1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">John Doe</h5>
+              <p class="card-text">I recomend this agency! I had a lot of fun!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+    
+  </body>
+</html>
