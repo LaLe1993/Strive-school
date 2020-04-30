@@ -93,13 +93,14 @@
         }
         document.getElementById("numberOfTeams").value = "";
       }
-
+      var names = document.querySelectorAll("ul li");
       function assignTeam(){
         let numberOfNames = document.querySelectorAll(".myNames").length;
         let numberOfTeams = document.querySelectorAll(".myTeams").length;
         let valueOfTeams = [];
-        var nameValues = [];
+        let nameValues = [];
         let ranNumber = Math.floor(Math.random() * numberOfNames);
+        let randomNumber = Math.floor(Math.random() * numberOfTeams);
         if(numberOfTeams < 2){
           alert("Numer of teams must be 2 or higher!");
         }else{
@@ -116,12 +117,11 @@
             }else{
               let newElement = document.createElement("p");
               newElement.innerText = nameValues[ranNumber];
-              document.querySelector(`.myTeam${[0]}`).appendChild(newElement);
-              document.querySelectorAll("ul li").splice(ranNumber,1);
+              document.querySelector(`.myTeam${[randomNumber]}`).appendChild(newElement);
             }
           }
         }
-            console.log(nameValues);
+            console.log(document.querySelectorAll("ul li"));
             console.log(ranNumber);
       }
 
