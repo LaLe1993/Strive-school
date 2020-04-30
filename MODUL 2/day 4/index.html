@@ -98,8 +98,8 @@
         let numberOfNames = document.querySelectorAll(".myNames").length;
         let numberOfTeams = document.querySelectorAll(".myTeams").length;
         let valueOfTeams = [];
-        let nameValues = [];
-        let ranNumber = Math.floor(Math.random() * numberOfNames) + 1;
+        var nameValues = [];
+        let ranNumber = Math.floor(Math.random() * numberOfNames);
         if(numberOfTeams < 2){
           alert("Numer of teams must be 2 or higher!");
         }else{
@@ -112,18 +112,17 @@
           for(let y=0;y<numberOfNames;y++){
             nameValues.push(document.querySelectorAll("ul li")[y].innerText)
           }
-          for(let x = 0; x<valueOfTeams.length;x++){
-            if(valueOfTeams[x] > valueOfTeams[x+1]){
+            if(valueOfTeams[0] > valueOfTeams[1]){
             }else{
               let newElement = document.createElement("p");
               newElement.innerText = nameValues[ranNumber];
-              document.querySelector(`.myTeam${[x]}`).appendChild(newElement);
-              nameValues.splice(ranNumber,1);
+              document.querySelector(`.myTeam${[0]}`).appendChild(newElement);
+              document.querySelectorAll("ul li").splice(ranNumber,1);
             }
-          }
           }
         }
             console.log(nameValues);
+            console.log(ranNumber);
       }
 
     </script>
