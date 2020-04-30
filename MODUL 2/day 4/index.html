@@ -30,26 +30,31 @@
         <input type="text" class="form-control" placeholder="Enter new name" id="newNameInList"/>
       </div>
 
-      <div class="row">
-        <div class="col-3">
-          <ul class="list-group pb-4" id="newList">
-          </ul>
-        </div>
-      </div>
+      
 
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <button class="btn btn-success" type="button" id="button-addon1" onclick="newTeams()">Submitt</button>
         </div>
-        <input type="text" class="form-control" placeholder="Input number of teams (2 or higher)" id="numberOfTeams"/>
+        <input type="text" class="form-control" placeholder="Input number of teams" id="numberOfTeams"/>
       </div>
 
       <div class="input-group-prepend">
         <button class="btn btn-success mb-4" type="button" id="button-addon1" onclick="assignTeam()">Assign team</button>
+        <button class="btn btn-danger mb-4 ml-5" type="button" id="button-addon1" onclick="history.go(0);">Restart app</button>
       </div>
-
+      <div class="input-group-prepend float-right">
+    </div>
       <div class="row" id="newTeams">
       </div>
+
+      <div class="row mt-4">
+        <div class="col col-12" style="text-align: center;">
+          <ul class="list-group pb-4" id="newList">
+          </ul>
+        </div>
+      </div>
+    
     </div>
 
     <!-- Optional JavaScript -->
@@ -74,7 +79,7 @@
         if(document.getElementById("numberOfTeams").value !== ""){
           if(isNaN(document.getElementById("numberOfTeams").value)){
             document.getElementById("numberOfTeams").value = "";
-            document.getElementById("numberOfTeams").setAttribute("placeholder","You must input ONLY numbers!");
+            document.getElementById("numberOfTeams").setAttribute("placeholder","You must input numbers!");
           }else{
             document.getElementById("newTeams").innerText = "";
             for(let i=0;i<document.getElementById("numberOfTeams").value;i++){
@@ -82,7 +87,7 @@
               let newElement = document.createElement("h3");
               newElement.innerText = "Team " + (i+1);
               newTeam.appendChild(newElement);
-              newTeam.setAttribute("class",`col col-6 col-md-3 col-lg-2 border pt-2 myTeams myTeam${[i]}`);
+              newTeam.setAttribute("class",`col col-12 col-md-3 col-lg-2 border pt-2 myTeams myTeam${[i]}`);
               newTeam.setAttribute("style","text-align:center;")
               document.getElementById("newTeams").appendChild(newTeam);
             }
@@ -93,38 +98,41 @@
         }
         document.getElementById("numberOfTeams").value = "";
       }
-      var names = document.querySelectorAll("ul li");
+
+      var list = document.getElementById("newList");
+      var assignTeamButton = document.querySelectorAll(".myNames").length;
       function assignTeam(){
         let numberOfNames = document.querySelectorAll(".myNames").length;
         let numberOfTeams = document.querySelectorAll(".myTeams").length;
-        let valueOfTeams = [];
-        let nameValues = [];
         let ranNumber = Math.floor(Math.random() * numberOfNames);
-        let randomNumber = Math.floor(Math.random() * numberOfTeams);
+        let nameValues = [];
         if(numberOfTeams < 2){
           alert("Numer of teams must be 2 or higher!");
         }else{
           if(numberOfNames === 0){
             alert("You must input names to sort them in teams!")
           }else{
-          for(let i = 0;i<numberOfTeams;i++){
-            valueOfTeams.push(document.querySelectorAll(`.myTeam${[i]}`).length);
-          }
-          for(let y=0;y<numberOfNames;y++){
-            nameValues.push(document.querySelectorAll("ul li")[y].innerText)
-          }
-            if(valueOfTeams[0] > valueOfTeams[1]){
-            }else{
+            for(let y=0;y<numberOfNames;y++){
+              nameValues.push(document.querySelectorAll("ul li")[y].innerText)
+            }
+              if(assignTeamButton === numberOfTeams){
+              assignTeamButton = 0;
               let newElement = document.createElement("p");
               newElement.innerText = nameValues[ranNumber];
-              document.querySelector(`.myTeam${[randomNumber]}`).appendChild(newElement);
-            }
+              document.querySelector(`.myTeam${[assignTeamButton]}`).appendChild(newElement);
+              assignTeamButton = assignTeamButton + 1;
+              list.removeChild(list.childNodes[ranNumber+1]);
+              }else{
+              let newElement = document.createElement("p");
+              newElement.innerText = nameValues[ranNumber];
+              document.querySelector(`.myTeam${[assignTeamButton]}`).appendChild(newElement);
+              assignTeamButton = assignTeamButton + 1;
+              list.removeChild(list.childNodes[ranNumber+1]);
+              }
           }
-        }
             console.log(document.querySelectorAll("ul li"));
-            console.log(ranNumber);
       }
-
+    }
     </script>
   </body>
 </html>
