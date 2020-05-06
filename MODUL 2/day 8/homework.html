@@ -29,8 +29,8 @@
             color: red;
         } 
 
-        nav > a {
-            font-weight: bold;
+        nav > * {
+            font-weight: bold !important;
         }
 
         .jumbotron p > a{
@@ -399,9 +399,9 @@
     }
 
     function removePost(){
-        let numberOfPosts = document.querySelectorAll(".blog-post")
-        numberOfPosts.pop();
-        console.log(numberOfPosts)
+        let blogs = document.querySelector(".blog-main");
+        let children = document.querySelectorAll(".blog-post").length
+        blogs.removeChild(blogs.childNodes[children]);
     }
 
     function alertOnHover(){
@@ -409,10 +409,10 @@
         for(let i=0;i<authors.length;i++){
              let x = document.querySelectorAll(".author")[i].innerText;
              console.log(x)
-        document.querySelectorAll(".author")[i].setAttribute("onmouseover","alert(`${document.querySelectorAll('.author')[0].innerHTML}`)")
+        document.querySelectorAll(".author")[i].setAttribute("onmouseover","alert(`event.target.innerText`)")
         }
     }
-    
+
     </script>
 </body>
 
