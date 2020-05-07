@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<!--
+ASSIGNMENT RULES
+- The solution must be pushed to the repository and be available for the tutors by the end of the day
+- You can ask for tutor's help
+- You can google / use StackOverflow BUT we suggest you to use just the material provided
+- To test the page, just open it with your default browser.
+- Use Bootstrap4 classes to render the page.
+- Use correctly containers and rows in order to have a great display
+
+ASSIGNMENT TOPIC
+You are creating a website to showcase your favourite music albums.
+In this page you'd like to have a short bio of yourself, the top albums of your life, 
+the worst album you ever listen to and everything related to the music you love.
+
+NOTE:
+Most of the time, even the most expert of designers, need inspiration.
+Spend 30 minutes surfing the web and searching for the way of rapresenting album that you like the most.
+Could be the Amazon way, the Spotity or Apple music way or some other blog out there.
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- IMPORT ALL THE BOOSTRAP RELATED CSS & SCRIPTS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      /* EXERCISE 1
+            For all Albums we'd like to have a consistent style.
+            Create a class for:
+            - The album container
+            - The album cover
+            - The album title
+            - The album group / singer / dj
+            - The album genre
+            - The album duration
+            - etc
+         */
+
+      /* EXERCISE 2 
+            Based on the artists you like the most, create a combination of colors 
+            to override bootstrap standard and make your website unique
+         */
+         .card{
+           position: relative;
+           overflow: hidden;
+         }
+         .badge{
+          position: absolute;
+          top: 14px;
+          left: -5px;
+          transform: rotate(-25deg);
+         }
+    </style>
+  </head>
+  <body>
+    <!-- EXERCISE 3 
+            Implement a navigation bar using the bootstrap component
+            This navigation bar must be linked to every section in your page
+        -->
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" style="margin-left: auto;">
+            <a class="navbar-brand" href="#">My favourite music albums</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          <div class="container">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="index.html">Home </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="albums.html">Albums <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="favouriteAlbum.html">Favourite album</a>
+                </li>
+              </ul>
+          </div>
+        </nav>
+    <!-- EXERCISE 4
+            Create a Responsive section for your favourite albums.
+            In this section you should have:
+            - 4 albums per row when the screen is very large
+            - 3 albums per row when you are on a tablet (or a smaller window)
+            - 2 albums per row when you are on a small screen
+        -->
+    <div class="container">
+        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" style="margin-top: 80px;">
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://i1.sndcdn.com/artworks-000169081514-gcn0fu-t500x500.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Marshmello</h5>
+                        <h5 class="card-title">Alone</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">Future bass</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Basshunter_%E2%80%93_LOL.jpg/220px-Basshunter_%E2%80%93_LOL.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Basshunter</h5>
+                        <h5 class="card-title">LOL</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">Eurodance</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/She_Wolf%28FallingtoPieces%29.jpg/220px-She_Wolf%28FallingtoPieces%29.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">David Guetta</h5>
+                        <h5 class="card-title">She wolf</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">‎House music</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Avicii_-_True_%28Album%29.png/220px-Avicii_-_True_%28Album%29.png" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Avicii</h5>
+                        <h5 class="card-title">True</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">‎EDM‎/House‎</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Jala Brat & Buba Coreli</h5>
+                        <h5 class="card-title">Kruna</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">Secondary</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://img.discogs.com/9OETQpE7idU_L3hJDPdEtVfx0Lo=/fit-in/492x492/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-10550710-1499720748-2196.jpeg.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Maya Berović</h5>
+                        <h5 class="card-title">Viktorijina tajna</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">Secondary</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Hurricane</h5>
+                        <h5 class="card-title">Hasta la vista</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">Secondary</span></div>
+                </div>
+            </div>
+            <div class="col mb-4">
+                <div class="card">
+                    <a href="#review"><img src="https://www.udiscovermusic.com/wp-content/uploads/2017/07/Queen-A-Night-At-The-Opera-album-cover-with-border-web-optimised-820.jpg" class="card-img-top" alt="..." /></a>
+                    <div class="card-body" style="text-align: center;">
+                        <h5 class="card-title">Queen</h5>
+                        <h5 class="card-title">A night at the opera</h5>
+                    </div>
+                    <div class="badge"><span class="badge badge-pill badge-warning">Secondary</span></div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- EXERCISE 5
+            Create a section for the album review.
+            Pick one of your fav albums, and create a section with:
+            - Cover
+            - Title
+            - Band
+            - Lenght
+            - Genre
+            - Tracklist
+            - ... And whatever you think it's interesting about it!
+        -->
+        <div class="row mt-3">
+            <div class="col mb-4">
+                <h3>Review</h3>
+            </div>
+        </div>
+            <div class="row mb-3">
+                <div class="col-12 col-md-8">
+                    <h4>Queen - A night at the opera</h4>
+                    <div class="row">
+                        <div class="col">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name of song</th>
+                                    <th scope="col">Length</th>
+                                    <th scope="col">Side of record</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th scope="row">1</th>
+                                    <td>Death on Two Legs</td>
+                                    <td>3:43</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">2</th>
+                                    <td>Lazing on a Sunday Afternoon</td>
+                                    <td>1:08</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">3</th>
+                                    <td>I'm in Love with My Car</td>
+                                    <td>3:05</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">4</th>
+                                    <td>You're My Best Friend</td>
+                                    <td>2:52</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">5</th>
+                                    <td>39</td>
+                                    <td>3:30</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">6</th>
+                                    <td>Sweet Lady</td>
+                                    <td>4:03</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">7</th>
+                                    <td>Seaside Rendezvous</td>
+                                    <td>2:13</td>
+                                    <td>Side one</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">8</th>
+                                    <td>The Prophet's Song</td>
+                                    <td>8:21</td>
+                                    <td>Side two</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">9</th>
+                                    <td>Love of My Life</td>
+                                    <td>3:39</td>
+                                    <td>Side two</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">10</th>
+                                    <td>Good Company</td>
+                                    <td>3:26</td>
+                                    <td>Side two</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">11</th>
+                                    <td>Bohemian Rhapsody</td>
+                                    <td>5:55</td>
+                                    <td>Side two</td>
+                                  </tr>
+                                  <tr>
+                                    <th scope="row">12</th>
+                                    <td>God Save the Queen</td>
+                                    <td>1:15</td>
+                                    <td>Side two</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+                    <div class="col-12 col-md-4 card mb-4" style="height: 600px; padding-top: 15px;">    
+                        <img src="https://www.udiscovermusic.com/wp-content/uploads/2017/07/Queen-A-Night-At-The-Opera-album-cover-with-border-web-optimised-820.jpg" class="card-img-top" alt="..." />
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col" style="margin-top: 20px;">
+                                    <p> Lenght:</p>
+                                    <p> Genre:</p>
+                                    <p> Most popular song:</p>
+                                    <p> Released:</p>
+                                </div>
+                                <div class="col" style="margin-top: 20px;">
+                                    <p> 43:08</p>
+                                    <p> Progressive rock</p>
+                                    <p> Bohemian Rhapsody</p>
+                                    <p> 21 November 1975</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+        <!-- EXERCISE 6
+            Worst album list! Find out the music you don't really like or you find overrated and list it
+            in this "hall of shame" chart!
+        -->
+
+
+        <!-- EXERCISE 7
+            Do you have any musician / band you admire or you are fan of?
+            This section is dedicated to him / her / them!
+            Feel free to experiment in this part of the page.
+        -->
+
+        <!-- EXERCISE 8
+            Just covers!
+            Create a tapestry of album pictures. Every album picture must be "square" (use CSS to do that).
+            Put at least 20 covers (also repeated) to have a nice effect and see how Bootstrap handles it.
+        -->
+        <div class="row d-flex justify-content-center mt-3">
+            <div class="col-4 col-offset-4">
+                <div id="carouselExampleSlidesOnly" class="carousel slide border" data-ride="carousel">
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                          <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://nemazabranjenih.rs/wp-content/uploads/2020/02/84439072_103399444531850_4809989819304332501_n.jpg" class="d-block w-100" alt="...">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="card-img-top" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://i1.sndcdn.com/artworks-000169081514-gcn0fu-t500x500.jpg" class="card-img-top" alt="..." /> 
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Basshunter_%E2%80%93_LOL.jpg/220px-Basshunter_%E2%80%93_LOL.jpg" class="card-img-top" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/She_Wolf%28FallingtoPieces%29.jpg/220px-She_Wolf%28FallingtoPieces%29.jpg" class="card-img-top" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="card-img-top" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="card-img-top" alt="..." />
+                      </div>
+                      <div class="carousel-item">
+                        <img src="https://lh3.googleusercontent.com/829ak6rOuwWZNjHf0VH2Ljm8pKfMmFZvwaeXKAYW5gE6a234U4xncxkV-etlCPwm4V6hKdZGTHQ" class="card-img-top" alt="..." />
+                      </div>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        
+
+
+
+        <!-- EXERCISE 9
+            Implement a footer with some information / social links
+        -->
+        <!-- EXERCISE 10
+            Every time the user clicks on a album picture, toggle the album details
+        -->
+        
+        <!-- EXERCISE 11
+            Add a button to each section. By clicking on it the section appears (if hidden) or disappears (if visible)
+        -->
+        
+        <!--
+            EXERCISE 12
+            Add in the footer a field that counts, on page load, how many ALBUMS are on the page 
+        -->
+        
+    </div>
+    <div class="row" style="margin-top: 100px;">
+        <div class="col" style="text-align: center; background-color: #212529; color: white; padding-top: 15px;">
+        <blockquote class="blockquote mb-0">
+          <p>Strahinja Lalović</p>
+          <p>Email: strahinjalalovic93@gmail.com</p>
+        </blockquote>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        window.onload = function(){
+            $('.onTopToll').tooltip()
+        }
+    </script>
+  </body>
+</html>
