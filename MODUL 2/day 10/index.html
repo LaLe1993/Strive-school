@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ce9308328b.js" crossorigin="anonymous"></script>
+    <title>GOG.com</title>
+    <style>
+        body{
+            background-color: #d8d8d8;
+            font-family: 'Open Sans', sans-serif;  
+        }
+        .logoDiv{
+            position: relative;
+            width: 34px;
+            height: 31px;
+            border-radius: 3px;
+            margin-right: 29px;
+            margin-top: 3px;
+            overflow: hidden;
+            background-color: white;
+        }
+        .logoDiv img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            bottom: -1px;
+        }
+        .navbar-dark{
+            background-color: rgba(26,26,26,0.9);
+            font-weight: 600;
+            font-size: 14px;
+            z-index: 5;
+            height: 56px;
+        }
+        .dropdown-menu{
+            padding-left: 8px;
+            padding-right: 8px;
+            font-size: smaller;
+            width: 230px;
+        }
+        .dropdown-menu .dropdown-item{
+            padding-left: 5px;
+            padding-right: 5px;
+            font-weight: 600;
+            border-radius: 2px;
+            color: rgb(100, 100, 100);
+        }
+        .dropdown-item.special{
+            color: #00aabb !important;
+        }
+        .dropdown-menu .dropdown-item .fa-angle-right{
+            opacity: 50%;
+        }
+        .dropdown-menu .dropdown-item:hover{
+            background-color: rgb(238, 238, 238);
+            color: black;
+        }
+        .nav-item.dropdown > a {
+            padding-right: 29px !important;
+            padding-left: 17px !important;
+            color: #CCCCCC !important;
+            position: relative;
+        }
+        .nav-item.dropdown > a.signIn{
+            color: #de8ae5 !important;
+        }
+
+        .nav-item.dropdown > a > i{
+            color: #CCCCCC !important;
+            font-size: 7px;
+            position: absolute;
+            top: 15px;
+            right: 18px;
+        }
+        .fa-shopping-cart{
+            margin-top: -2px;
+            margin-right: 2px;
+            color: #CCCCCC;
+        }
+        #shoppingCart{
+            padding-left: 21px;
+            padding-right: 21px;
+        }
+        #search{
+            padding-left: 21px;
+            color: #CCCCCC;
+            margin-top: -2px;
+            margin-right: 2px;
+        }
+        .onTop{
+            position: absolute;
+            background-image: url(https://media.mnn.com/assets/images/2018/12/PurpleSkyPalmTrees1000px.jpg.1440x960_q100_crop-scale_upscale.jpg);   
+            top: 0px;
+            right: 0px;
+            bottom: 52px;
+            left: 0px;
+            z-index: 100;
+        }
+        .sectionHighlights{
+            border-bottom: 1px solid #bfbfbf;
+        }
+        #highlighter{
+            width: 24px;
+            height: 32px;
+        }
+        #carouselExampleIndicators{
+            height: 460px;
+            width: 100%;
+            position: relative;
+        }
+        .carousel-inner img{
+            height: 460px;
+            width: 100%;
+            object-fit: cover;
+        }
+        #carouselExampleIndicators .carousel-indicators{
+            position: absolute;
+            margin-bottom: 0px;
+            bottom: -21px;
+        }
+        #carouselExampleIndicators .carousel-indicators > li{
+        border: 1px solid #86328A !important;
+        }
+        #carouselExampleIndicators .carousel-control-prev{
+            position: absolute;
+            left: -7rem;
+            stroke: #d8d8d8;
+        }
+        #carouselExampleIndicators .carousel-control-next{
+            position: absolute;
+            right: -7rem;
+            stroke: #d8d8d8;
+        }
+        .prevAndNext{
+            color:#616161;
+        }
+        .carousel-control-next,.carousel-control-prev{
+            opacity: 1;
+        }
+        .carousel-control-next:hover,.carousel-control-prev:hover{
+            opacity: 1;
+        }
+        #sectionWithCards1{
+            margin-top: 41px;
+            height: 210px;
+        }
+        #sectionWithCards1 .col{
+            padding: 0px 12px;
+        }
+
+        #sectionWithCards1 .card{
+            width: 100%;
+            overflow: hidden;
+            height: 203px;
+            font-size: 14px;
+            border-radius: 0px;
+        }
+        #sectionWithCards1 .card img{
+            width: 100%;
+            height: 117px;
+            object-fit: cover;
+        }
+        #sectionWithCards1 .card .card-body{
+            padding: 8px 16px;
+            background-color: #ececec;
+        }
+        #sectionWithCards1 .card .card-body > div{
+            padding-top: 16px;
+        }
+        #sectionWithCards1 .card .card-body div > i{
+            color: #999999;
+        }
+        .sale{
+            width: 53.6px;
+            height: 30px;
+            background-color: #78387b;
+            color: #fff;
+            padding: 9px 8px;
+            margin-right: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 2px;
+        }
+        .oldPrice{
+            font-size: 10px;
+            text-align: right;
+            color: #999999;
+            position: relative;
+        }
+        .crosLine{
+            width: 35px;
+            border-bottom: 1px solid #999999;
+            position: absolute;
+            top: 8px;
+            right: 0px;
+        }
+        hr{
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+        #galaxySection{
+            margin-top: 16px;
+        }
+        .galaxyLogo{
+            font-size: 14px;
+        }
+        .galaxyLogo img{
+            width: 28px;
+        }
+        .galaxyRow{
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .galaxyRow .galaxyLogo > a{
+            margin-left: 60px;
+            border-left: 1px solid hsla(0, 0%, 25%, 0.4);
+            padding-left: 44px;
+        }
+        .galaxyRow div > a > p{
+            margin-bottom: 0px;
+            margin-left: 7px;
+            color: #86328A;
+            font-weight: 700;
+        }
+        .purpleFont{
+            color: #86328A;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top navbar-dark">
+        <div class="container">
+            <div class="logoDiv"><img src="./img/logo.png" alt="GOG.com logo"></div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      STORE
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu menuWithIcons" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item d-flex justify-content-between align-items-center special" href="#">Cyberpunk 2077<i class="fas fa-angle-right"></i></a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">New releases<i class="fas fa-angle-right"></i><a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Bestsellers<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">On sale now<i class="fas fa-angle-right"></i></a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Action<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Adventure<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Indie<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">RPG<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Shooters<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Simulation<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Sport & Racing<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Strategy<i class="fas fa-angle-right"></i></a>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Movies for gamers<i class="fas fa-angle-right"></i></a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Browse all games<i class="fas fa-angle-right"></i></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      ABOUT
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">GOG.com</a>
+                      <a class="dropdown-item" href="#">GOG Galaxy</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Join the team</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    COMMUNITY
+                    <i class="fas fa-chevron-down"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">All forums</a>
+                    <a class="dropdown-item" href="#">General discussion forum</a>
+                    <a class="dropdown-item" href="#">Forum replies</a>
+                    <a class="dropdown-item" href="#">Community wishlist</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Facebook</a>
+                    <a class="dropdown-item" href="#">Twitter</a>
+                    <a class="dropdown-item" href="#">Twitch</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      SUPPORT
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="#">Game tehnical issues</a>
+                      <a class="dropdown-item" href="#">Orders and payments</a>
+                      <a class="dropdown-item" href="#">Account and website</a>
+                      <a class="dropdown-item" href="#">Downloads</a>
+                      <a class="dropdown-item" href="#">GOG Galaxy</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link signIn" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      SIGN IN
+                      <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <div></div>
+                    </div>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <a href="#" id="shoppingCart"><i class="fas fa-shopping-cart"></i><span style="color: #CCCCCC;">0</span></a>
+                <a href="#" id="search"><i class="fas fa-search"></i></a>
+              </form>
+            </div>
+        </div>
+        <div class="onTop"></div>
+      </nav>
+    <div class="container">
+        <section>
+            <div class="section sectionHighlights d-flex my-3">
+                <div id="highlighter"><i class="fas fa-highlighter"></i></div>
+                <div><h6>Highlights</h6></div>
+            </div>
+        </section>
+        <section>
+            <div class="containerForCarousel">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active">
+                        <img src="./img/carousel1.jpg" class="d-block w-100" alt="first picture">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/carousel2.jpg" class="d-block w-100" alt="second picture">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/carousel3.jpg" class="d-block w-100" alt="third picture">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/carousel4.jpg" class="d-block w-100" alt="fourth picture">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/carousel5.jpg" class="d-block w-100" alt="fifth picture">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="./img/carousel6.jpg" class="d-block w-100" alt="sixth  picture">
+                      </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <i class="fas fa-chevron-circle-left fa-2x prevAndNext"></i>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <i class="fas fa-chevron-circle-right fa-2x prevAndNext"></i>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </div>   
+        </section>
+        <section id="sectionWithCards1">
+            <di class="row">
+                <div class="col col-6 col-md-4 col-lg-3">
+                    <div class="card shadow-sm mb-5 bg-white rounded">
+                        <img src="./img/tile (1).jpg" class="card-img-top" alt="Gris image">
+                        <div class="card-body">
+                          <a href="#">GRIS</a>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fab fa-windows"></i>
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="sale d-flex justify-content-center align-items-center">-50%</div>
+                                <div>
+                                    <div class="oldPrice">
+                                        <i class="fas fa-euro-sign"></i>
+                                        <span>33.99</span>
+                                        <div class="crosLine"></div>
+                                    </div>
+                                    <div class="currentPrice">
+                                        <i class="fas fa-euro-sign"></i>
+                                        <span>16.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3">
+                    <div class="card shadow-sm mb-5 bg-white rounded">
+                        <img src="./img/tile (2).jpg" class="card-img-top" alt="Gris image">
+                        <div class="card-body">
+                          <a href="#">Ion Fury</a>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fab fa-windows"></i>
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="sale d-flex justify-content-center align-items-center">-50%</div>
+                                <div>
+                                    <div class="oldPrice">
+                                        <i class="fas fa-euro-sign"></i>
+                                        <span>33.99</span>
+                                        <div class="crosLine"></div>
+                                    </div>
+                                    <div class="currentPrice">
+                                        <i class="fas fa-euro-sign"></i>
+                                        <span>16.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3">
+                    <div class="card shadow-sm mb-5 bg-white rounded">
+                        <img src="./img/tile (3).jpg" class="card-img-top" alt="Gris image">
+                        <div class="card-body">
+                          <a href="#">WARTILE</a>
+                          <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <i class="fab fa-windows"></i>
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="d-flex">
+                                <div class="sale d-flex justify-content-center align-items-center">-50%</div>
+                                <div>
+                                    <div class="oldPrice">
+                                        <i class="fas fa-euro-sign"></i>
+                                        <span>33.99</span>
+                                        <div class="crosLine"></div>
+                                    </div>
+                                    <div class="currentPrice">
+                                        <i class="fas fa-euro-sign"></i>
+                                        <span>16.99</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                </div>
+                <div class="col col-6 col-md-4 col-lg-3">
+                    <div class="card shadow-sm mb-5 bg-white rounded">
+                        <img src="./img/tile (4).jpg" class="card-img-top" alt="Gris image">
+                        <div class="card-body">
+                            <a href="#">Close Combat: Watch am Rhein</a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <i class="fab fa-windows"></i>
+                                    <i class="fab fa-apple"></i>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="sale d-flex justify-content-center align-items-center">-50%</div>
+                                    <div>
+                                        <div class="oldPrice">
+                                            <i class="fas fa-euro-sign"></i>
+                                            <span>33.99</span>
+                                            <div class="crosLine"></div>
+                                        </div>
+                                        <div class="currentPrice">
+                                            <i class="fas fa-euro-sign"></i>
+                                            <span>16.99</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </di>
+        </section>
+    </div>
+<section id="galaxySection">
+    <hr>
+    <div class="container">
+        <div class="row galaxyRow">
+            <div class="col col-12 col-md-8">
+                <a href="#">We are GOG.COM, the <span class="purpleFont">DRM-free</span> home for a <span class="purpleFont">curated selection</span> of games. This place was <span class="purpleFont">made for gamers,</span> so make yourself at home.</a>
+            </div>
+            <div class="col col-12 col-md-4 galaxyLogo d-flex align-items-center">
+                <a href="#" class="d-flex align-items-center">
+                    <img src="https://pbs.twimg.com/profile_images/1173867168783577099/OFoUsyYJ_400x400.png" alt="Galaxy 2.0 logo">
+                    <p>The new GOG GALAXY 2.0</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    //SCRYPT FOR DROPDOWN MENU ICONS
+    let menuItems = document.querySelectorAll(".menuWithIcons .dropdown-item");
+    let menuIcons = document.querySelectorAll(".menuWithIcons .dropdown-item i");
+    for(let i=0;i<menuItems.length;i++){
+        menuItems[i].addEventListener("mouseover",function(){
+            menuIcons[i].classList.remove("fa-angle-right")
+            menuIcons[i].classList.add("fa-angle-double-right")
+        })
+        menuItems[i].addEventListener("mouseout",function(){
+            menuIcons[i].classList.remove("fa-angle-double-right")
+            menuIcons[i].classList.add("fa-angle-right")
+        })
+    }
+    //END OF SCRYPT
+    //SCRYPT FOR MENU ITHEMS HOVER
+    let mainMenu = document.querySelectorAll(".nav-item.dropdown > a");
+    for(let i=0;i<mainMenu.length;i++){
+        mainMenu[i].addEventListener("onmouseover",function(){
+            
+        })
+    }
+    console.log(mainMenu)
+    //END OF SCRYPT
+</script>
+</html>
