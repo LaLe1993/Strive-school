@@ -127,12 +127,12 @@
         }
         #carouselExampleIndicators .carousel-control-prev{
             position: absolute;
-            left: -7rem;
+            left: -13vw;
             stroke: #d8d8d8;
         }
         #carouselExampleIndicators .carousel-control-next{
             position: absolute;
-            right: -7rem;
+            right: -13vw;
             stroke: #d8d8d8;
         }
         .prevAndNext{
@@ -352,30 +352,30 @@
                       <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
                     </ol>
                     <div class="carousel-inner">
-                      <div class="carousel-item active">
+                      <div class="carousel-item active firstCarouselImage">
                         <img src="./img/carousel1.jpg" class="d-block w-100" alt="first picture">
                       </div>
-                      <div class="carousel-item">
+                      <div class="carousel-item firstCarouselImage">
                         <img src="./img/carousel2.jpg" class="d-block w-100" alt="second picture">
                       </div>
-                      <div class="carousel-item">
+                      <div class="carousel-item firstCarouselImage">
                         <img src="./img/carousel3.jpg" class="d-block w-100" alt="third picture">
                       </div>
-                      <div class="carousel-item">
+                      <div class="carousel-item firstCarouselImage">
                         <img src="./img/carousel4.jpg" class="d-block w-100" alt="fourth picture">
                       </div>
-                      <div class="carousel-item">
+                      <div class="carousel-item firstCarouselImage">
                         <img src="./img/carousel5.jpg" class="d-block w-100" alt="fifth picture">
                       </div>
-                      <div class="carousel-item">
+                      <div class="carousel-item firstCarouselImage">
                         <img src="./img/carousel6.jpg" class="d-block w-100" alt="sixth  picture">
                       </div>
                     </div>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <a class="carousel-control-prev d-flex align-items-center justify-content-end" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <i class="fas fa-chevron-circle-left fa-2x prevAndNext"></i>
-                      <span class="sr-only">Previous</span>
+                        <span class="sr-only">Previous</span>
                     </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <a class="carousel-control-next d-flex align-items-center justify-content-start" href="#carouselExampleIndicators" role="button" data-slide="next">
                         <i class="fas fa-chevron-circle-right fa-2x prevAndNext"></i>
                       <span class="sr-only">Next</span>
                     </a>
@@ -540,6 +540,18 @@
         })
     }
     console.log(mainMenu)
+    //END OF SCRYPT
+    //SCRYPT FOR CAROUSEL ITEMS PREVIOUS
+    let carouselImages = document.querySelectorAll(".firstCarouselImage");
+    for(let i=0;i<carouselImages.length;i++){
+        carouselImages[i].addEventListener("onchange",function(){
+        if (carouselImages[i].classList.contains("active")){
+            document.querySelector(".carousel-control-prev").setAttribute("style","background-image:url('./img/carousel6.jpg')")
+        }else{
+            console.log("Ne radi")
+        }
+        })
+    }
     //END OF SCRYPT
 </script>
 </html>
