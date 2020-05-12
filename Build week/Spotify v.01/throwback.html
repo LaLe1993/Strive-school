@@ -10,7 +10,8 @@
 <style>
     body{
         background-repeat: no-repeat;
-        background-image: linear-gradient(to bottom right, #1c1c1c, #030303);
+        background-size: 100% 100%;
+        background-image: linear-gradient(to bottom right, #25476f, #000000);
     }
     .container-flex{
         position: relative;
@@ -92,6 +93,62 @@
     .navbar-menu{
         padding-right: 0px;
     }
+    
+
+    ul.navbar-nav li a{
+        text-align: center;
+    }
+    li a{
+        color: rgba(255, 255, 255, 0.801); 
+        padding-right: 20px; 
+        padding-left: 20px;        
+    }
+    li a:hover{
+        border-bottom:1px solid green;
+    }
+    .content-images{
+        padding-left: 7px;
+        padding-right:7px;
+        margin-bottom:70px;
+    }
+    .content-column{
+        margin-bottom: 20vh;
+    }
+    .second-div-in-jumbotrone div{
+        height: 60px;
+        position: relative; 
+        padding: 15px 0;
+    }
+    .second-div-in-jumbotrone div a{
+        color: white;
+        opacity: 0.5;
+        font-size: 12px;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        display: inline-block;
+        position: relative;
+    }
+    .second-div-in-jumbotrone div a:after {    
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #1db954;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .second-div-in-jumbotrone div a:hover:after { 
+        width: 100%; 
+        left: 0; 
+    }
+    .second-div-in-jumbotrone div a:hover{
+        color: white;
+        opacity: 1;
+    }
 </style>
 <body>
     <div class="container-flex">
@@ -128,10 +185,79 @@
                     </div>
                 </nav>
         </div>
-        <div class="col col-sm-12 col-md-10 px-0 ">
+        <div class="col col-sm-12 col-md-10 px-0 content-column">
             <!-- HERE IS THE PLACE FOR YOUR CODE!! -->
-
-            
+            <div class="row mx-0">
+                <div class="col-6 offset-3">
+                    <div class="d-flex justify-content-around align-items-start second-div-in-jumbotrone mb-3">
+                        <div>
+                            <a>TRENDING</a>
+                        </div>
+                        <div>
+                            <a>PODCAST</a>
+                        </div>
+                        <div>
+                            <a>MOODS AND GENRES</a>
+                        </div>
+                        <div>
+                            <a>NEW RELEASES</a>
+                        </div>
+                        <div>
+                            <a>DISCOVER</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-10 offset-1">
+                    <div><h2 class="pb-2 text-white font-weight-bold">#THROWBACKTHURSDAY</h2></div>
+                    <div class="row">
+                        <div class="col col-2 content-images">
+                            <img src="img/img1.jpg" class="img-fluid" alt="Responsive image">
+                            <p class="text-center text-white font-weight-bold mt-2">Rap/ Hip-Hop</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 2.jpg" class="img-fluid" alt="Responsive image">
+                            <p class="text-center text-white font-weight-bold mt-2">Acidrap</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 6.jpg" class="img-fluid" alt="Responsive image">
+                            <p class="text-center text-white font-weight-bold mt-2 ">Viral 50-Norway</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 10.jpg" class="img-fluid" alt="Responsive image">
+                            <p class="text-center text-white font-weight-bold mt-2">Liricisti</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 8.jpg" class="img-fluid" alt="Responsive image">
+                            <p class="text-center text-white font-weight-bold mt-2">I Love My 90s Hip-Hop</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 9.jpg" class="img-fluid" alt="Responsive image">
+                            <p class="text-center text-white font-weight-bold mt-2">All out 90s</p>
+                        </div>
+                    </div>
+                    <div class="text-white font-weight-bold text-justify pb-2">
+                        <h4 style="font-size: 2rem;">Classifiche</h4>
+                    </div>
+                    <div class="row">
+                        <div class="col col-2 content-images">
+                            <img src="img/img 3.jpg" class="img-fluid " alt="">
+                            <p class="text-center text-white font-weight-bold mt-2">Top 50 - Global</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 4.jpg" class="img-fluid" alt="">
+                            <p class="text-center text-white font-weight-bold mt-2">Top 50 - USA</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 2.jpg" class="img-fluid" alt="">
+                            <p class="text-center text-white font-weight-bold mt-2">Acidrap</p>
+                        </div>
+                        <div class="col col-2 content-images">
+                            <img src="img/img 5.jpg" class="img-fluid" alt="">
+                            <p class="text-center text-white font-weight-bold mt-2">Top 50 - Germany</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- DONT MAKE CHANGIS UNDER THIS LINE! :D -->
         </div>
     </div>
