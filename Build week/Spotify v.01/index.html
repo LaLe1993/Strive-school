@@ -18,7 +18,7 @@
     .navbar{
         background-color: black;
         height: 90vh;
-        width: 15vw;
+        width: 16vw;
     }
     .navbar .fas, .navbar .far{
         color: #b3b3b3;
@@ -88,11 +88,23 @@
         font-size: 12px;
         color: #b3b3b3;
     }
+    .main-image-place{
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+    .navbar-menu{
+        padding-right: 0px;
+    }
+    .jumbotron.jumbotron-fluid img{
+        width: 100%;
+        object-fit: contain;
+    }
 </style>
 <body>
     <div class="container-flex">
         <div class="row mr-0">
-            <div class="col col-sm-12 col-md-2 pr-0">
+            <div class="col col-2 navbar-menu">
                 <nav class="navbar d-flex align-items-start fixed-top">
                     <div>
                         <ul class="navbar-nav">
@@ -124,10 +136,11 @@
                     </div>
                 </nav>
         </div>
-        <div class="col col-sm-12 col-md-10 pr-0 ">
+        <div class="col col-sm-12 col-md-10 px-0 ">
             <!-- HERE IS THE PLACE FOR YOUR CODE!! -->
-            Content
-
+            <div class="jumbotron jumbotron-fluid py-0 mb-0">
+                <img src="./img/queen main.jpg" alt="queen main image">
+            </div>
 
             
             <!-- DONT MAKE CHANGIS UNDER THIS LINE! :D -->
