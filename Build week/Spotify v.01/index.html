@@ -104,7 +104,9 @@
         width: 100%;
         height: 40vh;
         background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgb(23, 23, 23)), url("./img/queen main.jpg");
-        background-size: 100%;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        overflow: hidden;
     }
     .content-column{
         margin-bottom: 10vh;
@@ -205,13 +207,37 @@
         color: white;
         border-color: white;
     }
-
+    @media screen and (max-width: 992px){
+        .navbar{
+        width: 24vw;
+        }
+        .progress-bar{
+        width: 8vw;
+        }
+    }
+    @media screen and (max-width: 767px){
+        .player > :nth-child(1) {order: 2;}
+        .player > :nth-child(2) {order: 1;}
+        .player > :nth-child(3) {order: 2;}
+        .player{
+            height: 20vh;
+        }
+        .navbar{
+            height: 80vh;
+        }
+        .progress-bar{
+        width: 10vw;
+        }
+        .content-column{
+        margin-bottom: 20vh;
+    }
+    }
 </style>
 <body>
     <div class="container-flex">
         <div class="row mr-0">
-            <div class="col col-2 navbar-menu">
-                <nav class="navbar d-flex align-items-start fixed-top">
+            <div class="col col-xs-0 col-md-3 col-lg-2 navbar-menu">
+                <nav class="navbar d-flex align-items-start fixed-top navbar-md navbar-lg">
                     <div>
                         <ul class="navbar-nav">
                             <a class="navbar-brand my-3" href="#"><img src="./img/spotify-logo.png" alt="Spotify logo"></a>
@@ -227,7 +253,7 @@
                                 <i class="fas fa-book-open"></i>
                                 <a class="nav-link" href="#">Your Library</a>
                             </li>
-                        </ul>
+                        
                     </div>
                     <div class="mt-auto w-100">
                         <li class="nav-item d-flex justify-content-start align-items-center">
@@ -240,13 +266,14 @@
                             <a class="nav-link" href="#">User Name</a>
                         </li>
                     </div>
-                </nav>
+                </ul>
+            </nav>
         </div>
-        <div class="col col-sm-12 col-md-10 px-0 content-column">
+        <div class="col col-xs-12 col-sm-12 col-md-9 col-lg-10 px-0 content-column">
             <!-- HERE IS THE PLACE FOR YOUR CODE!! -->
             <div class="jumbotron jumbotron-fluid py-0 mb-0 d-flex align-items-end">
                 <div class="row d-flow justify-content-center w-100">
-                    <div class="col col-3">
+                    <div class="col col-sm-10 col-md-8 col-lg-5 col-xl-4">
                         <p>33,000,575 MONTHLY LISTENERS</p>
                         <h1>Queen</h1>
                         <div class="d-flex justify-content-around align-items-center first-div-in-jumbotrone mb-5">
@@ -261,9 +288,9 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col col-10 offset-1">
+                <div class="col col-12 col-lg-10 offset-lg-1">
                     <h2 class="my-4">Albums</h2>
-                    <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6">
+                    <div class="row row-cols-3 row-cols-md-4 row-cols-lg-6 pr-0">
                         <div class="col column-for-covers mb-4">
                             <img src="./img/cover1.jpg" alt="Bohemian rhapsody">
                             <div class="my-2">
@@ -351,31 +378,27 @@
                     </div>
                 </div>
             </div>
-        </div>
-                
-            
-
-            
+        </div>        
             <!-- DONT MAKE CHANGIS UNDER THIS LINE! :D -->
         </div>
     </div>
     <div class="row fixed-bottom player d-flex align-items-center">
-        <div class="col col-3 d-flex align-items-center">
-            <div class="d-flex">
+        <div class="col col-6 col-md-3 d-flex align-items-center">
+            <div class="d-flex first-div-in-player">
                 <div class="song-image mx-3">
                     <img src="" alt="">
                 </div>     
                 <div class="song-details d-flex flex-column justify-content-center">
-                    <p id="current-song-name">Song name</p>
+                    <p id="current-song-name">Song Name</p>
                     <p id="current-song-artist">Artist</p>
                 </div>
             </div>
             <div class="">
-                <i class="far fa-heart ml-4"></i>
+                <i class="far fa-heart ml-3"></i>
                 <i class="far fa-window-maximize ml-3"></i>
             </div>
         </div>
-        <div class="col col-6">
+        <div class="col col-12 col-md-6 my-2">
             <div class="w-100 d-flex justify-content-center player-controls align-items-center">
                 <i class="fas fa-random"></i>
                 <i class="fas fa-step-backward"></i>
@@ -391,12 +414,12 @@
                 <span>7:00</span>
             </div>
         </div>
-        <div class="col col-3">
+        <div class="col col-6 col-md-3">
             <div class="pr-3 w-100 d-flex justify-content-end">
                 <div>
                     <i class="fas fa-bars"></i>
-                    <i class="fas fa-headphones ml-3"></i>
-                    <i class="fas fa-volume-up ml-3"></i>
+                    <i class="fas fa-headphones ml-2"></i>
+                    <i class="fas fa-volume-up ml-2"></i>
                 </div>
                 <div class="d-flex align-items-center">
                     <div class="progress progress-bar ml-2">
@@ -411,5 +434,60 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script></script>
+<script>
+
+    //Script to remove song immage
+    let navbarNow = document.querySelector(".navbar-menu");
+    window.addEventListener("resize",function(){
+    let windowSize = window.innerWidth;
+    let numberOfChildren = document.querySelectorAll(".first-div-in-player > div");
+        if(windowSize < 1074){
+            numberOfChildren[0].setAttribute("style","display:none;")
+            numberOfChildren[1].setAttribute("style","margin-left:12px;")
+        }else{
+            numberOfChildren[0].setAttribute("style","display:block;")
+            numberOfChildren[1].setAttribute("style","margin-left:0px;")
+        }
+        let navbarRegular = document.querySelector(".navbar-menu");
+        if(windowSize < 768){
+            navbarRegular.innerHTML = ""
+            document.querySelectorAll(".container-flex > .row > div")[0].setAttribute("style","display:none");
+        }else{
+            document.querySelectorAll(".container-flex > .row > div")[0].setAttribute("style","display:block");
+            navbarRegular.innerHTML = `<div class="col col-xs-0 col-md-3 col-lg-2 navbar-menu">
+                <nav class="navbar d-flex align-items-start fixed-top navbar-md navbar-lg">
+                    <div>
+                        <ul class="navbar-nav">
+                            <a class="navbar-brand my-3" href="#"><img src="./img/spotify-logo.png" alt="Spotify logo"></a>
+                            <li class="nav-item d-flex justify-content-start align-items-center">
+                                <i class="fas fa-home"></i>
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-start align-items-center">
+                                <i class="fas fa-search"></i>
+                                <a class="nav-link" href="#">Search</a>
+                            </li>
+                            <li class="nav-item d-flex justify-content-start align-items-center">
+                                <i class="fas fa-book-open"></i>
+                                <a class="nav-link" href="#">Your Library</a>
+                            </li>
+                        
+                    </div>
+                    <div class="mt-auto w-100">
+                        <li class="nav-item d-flex justify-content-start align-items-center">
+                            <i class="far fa-arrow-alt-circle-down"></i>
+                            <a class="nav-link" href="#">Install App</a>
+                        </li>
+                        <hr class="d-flex flex-wrap">
+                        <li class="nav-item d-flex justify-content-start align-items-center user-details">
+                            <i class="fas fa-user"></i>
+                            <a class="nav-link" href="#">User Name</a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </div>`
+        }
+    })
+</script>
 </html>
