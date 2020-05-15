@@ -238,11 +238,6 @@
     .controls{
     cursor: pointer;
     }
-    .fa-heart:hover{
-        background-color: rgb(17, 231, 106);
-        
-    }
-    
 
     @media screen and (max-width: 1444px){
         .navbar-brand > img{
@@ -330,7 +325,7 @@
                           <h6 class = "text-white">Queen</h6>
                           <a href="#" class="btn play ">PLAY</a>
                           <h6 class = "text-white font-bold">1974 * 16 SONGS</h6>
-                          <span><i class="fa fa-heart mr-3 text-white"></i></span>
+                          <span><i class="far fa-heart mr-3 text-white"></i></span>
                           <span><i class="fa fa-ellipsis-h text-white"></i></span>
                         </div>
                       </div>
@@ -513,7 +508,7 @@
             <div class="w-100 d-flex justify-content-center player-controls align-items-center">
                 <i class="fas fa-random"></i>
                 <i class="fas fa-step-backward"></i>
-                <i class="far fa-play-circle fa-2x"></i>
+                <i class="far fa-play-circle fa-2x playStop"></i>
                 <i class="fas fa-step-forward"></i>
                 <i class="fas fa-sync-alt"></i>
             </div>
@@ -641,15 +636,23 @@
                     })
                     }
 
-              let playButton = document.querySelector('.fa-play-circle');
+              let playButton = document.querySelector('.playStop');
               playButton.addEventListener('click', function(){
+                  if(playButton.classList.contains("fa-play-circle")){
                   let music = new Audio('songs/frank.mp3')
                   music.play()
                   music.classList.add('current-song-name')
-                  
+                  playButton.classList.remove("fa-play-circle")
+                  playButton.classList.add("fa-pause-circle")
+                  }else{
+                    let music = new Audio('songs/frank.mp3')
+                    music.pause();
+                    music.currentTime = 0;
+                  music.classList.add('current-song-name')
+                  playButton.classList.remove("fa-pause-circle")
+                  playButton.classList.add("fa-play-circle")
+                  }
               })
-
-
               function pause(){
                 let music = new Audio('songs/frank.mp3')
                   music.stop()
