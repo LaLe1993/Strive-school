@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ce9308328b.js" crossorigin="anonymous"></script>
+    <title>Spotify</title>
+</head>
+<style>
+    body{
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: linear-gradient(to bottom right, #25476f, #000000);
+    }
+    .container-flex{
+        position: relative;
+    }
+    .vertical-navbar{
+        background-color: black;
+        height: 90vh;
+        width: 16vw;
+    }
+    .navbarItem:hover > a, .navbarItem:hover i{
+        color: white;
+    }
+    .navbar .fas, .navbar .far{
+        color: #b3b3b3;
+        margin-right: 16px;
+        width: 16px;
+        height: 16px;
+    }
+    .navbar a{
+        font-weight: bold;
+        color: #b3b3b3;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .navbar-brand > img{
+        height: 4vw;
+    }
+    .navbar hr{
+        border-top: 1px solid #404040;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .user-details a{
+        color: white;
+    }
+    .player{
+        background-color: #282828;
+        height: 10vh;
+        color: white;
+        border-top: 2px solid black;
+    }
+    .player i{
+        color: #b3b3b3;
+    }
+    .player i:hover{
+        color: white;
+    }
+    .song-image{
+        width: 6vh;
+        height: 6vh;
+        background-color: white;
+        overflow: hidden;
+    }
+    .song-image img{
+        width: 100%;
+        object-fit: cover;
+    }
+    .song-details{
+        height: 6vh;
+    }
+    .song-details p{
+        margin: 0;
+    }
+    #current-song-artist{
+        font-size: 11px;
+        color: #b3b3b3;
+    }
+    .progress-bar{
+        width: 5vw;
+        height: 3px;
+        background-color: #b3b3b3;
+    }
+    .player-controls i{
+        margin-left: 3vw;
+        margin-left: 3vw;
+    }
+    .song-duration{
+        width: 70%;
+        height: 3px;
+    }
+    .player-song-duration{
+        font-size: 12px;
+        color: #b3b3b3;
+    }
+    .navbar-menu{
+        padding-right: 0px;
+    }
+    .jumbotron.jumbotron-fluid{
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgb(23, 23, 23)), url("./img/queen main.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .content-column{
+        margin-bottom: 20vh;
+    }
+    .content-column .row{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .content-column h2{
+        color: white;
+        font-weight: bold;
+        padding-left: 7px;
+    }
+    .column-for-covers{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+    .column-for-covers img{
+        width: 100%;
+        object-fit: cover;
+    }
+    .column-for-covers > div{
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+    .column-for-covers > div > p{
+        color: #a3a3a3;
+        font-size: 14px;
+    }
+    .content-column .jumbotron p{
+        color: white;
+        opacity: 0.5;
+        font-size: 11px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+    .content-column .jumbotron h1{
+        color: white;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-size: 64px;
+        margin-bottom: 30px;
+    }
+    .content-column .jumbotron .btn{
+        border-radius: 25px;
+        width: 40%;
+        font-size: 11px;
+        height: 35px;
+        letter-spacing: 2px;
+    }
+    .content-column .jumbotron i{
+        color: white;
+    }
+    .second-div-in-jumbotrone div{
+        height: 60px;
+        position: relative; 
+        padding: 15px 0;
+    }
+    .second-div-in-jumbotrone div a{
+        color: white;
+        opacity: 0.5;
+        font-size: 12px;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        display: inline-block;
+        position: relative;
+    }
+    .second-div-in-jumbotrone div a:after {    
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #1db954;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .second-div-in-jumbotrone div a:hover:after { 
+        width: 100%; 
+        left: 0; 
+    }
+    .second-div-in-jumbotrone div a:hover{
+        color: white;
+        opacity: 1;
+    }
+    .btn-outline-secondary{
+        background-color: rgba(0, 0, 0, 0.4);
+        color: white;
+        border-color: white;
+    }
+    .navbar .buttons{
+        border-radius: 25px;
+        width: 100%;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 2px;
+    }
+    .column-for-covers{
+        transition: ease 0.3s;
+    }
+    .column-for-covers:hover{
+        transform: scale(1.2);
+        transition: ease 0.3s;
+        z-index: 1;
+    }
+    @media screen and (max-width: 1444px){
+        .navbar-brand > img{
+        height: 4vw;
+        }
+    }
+    @media screen and (max-width: 992px){
+        .vertical-navbar{
+        width: 24vw;
+        }
+        .progress-bar{
+        width: 8vw;
+        }
+        .navbar-brand > img{
+        height: 6vw;
+        }
+    }
+    @media screen and (max-width: 767px){
+        .player > :nth-child(1) {order: 2;}
+        .player > :nth-child(2) {order: 1;}
+        .player > :nth-child(3) {order: 2;}
+        .player{
+            height: 20vh;
+        }
+        .progress-bar{
+        width: 10vw;
+        }
+        .content-column{
+        margin-bottom: 32vh;
+        }
+        .navbar-brand > img{
+        height: 6vh;
+        }
+        .second-div-in-jumbotrone div a{
+            font-size: 10px;
+            letter-spacing: 0px;
+        }
+        div > .throw{
+            font-size: 23px;
+        }
+        .navbar{
+            background-color: black;
+        }
+    }
+    @media screen and (max-height: 767px){
+        .player{
+            height: 25vh;
+        }
+        .navbar-brand > img{
+        height: 9vh;
+        }
+        .vertical-navbar{
+        width: 24vw;
+        height: 75vh;
+        }
+        .content-column{
+        margin-bottom: 32vh;
+        }
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top vertical-navbar flex-column">
+        <a class="navbar-brand my-3" href="#"><img src="./img/spotify-logo.png" alt="Spotify logo"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse w-100 h-100 align-items-start" id="navbarNavAltMarkup">
+            <div class="navbar-nav d-flex flex-column w-100     h-100 justify-content-between">
+                <div>
+                    <a class="nav-item nav-link active" href="#"><i class="fas fa-home"></i>Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#"><i class="fas fa-search"></i>Features</a>
+                    <a class="nav-item nav-link" href="#"><i class="fas fa-book-open"></i>Pricing</a>
+                </div>
+                <div>
+                    <div class="d-flex flex-column bd-highlight mt-3">
+                        <a href="#"><button type="button" class="btn btn-light mb-2 buttons">SIGN UP</button></a>
+                        <a href="signIn.html"><button type="button" class="btn btn-outline-light mb-3 buttons">LOGIN</button></a>
+                    <div>
+                    <div class="row">
+                        <div class="col-6 px-3" style="color: white; font-size: 13px; text-align: center;">
+                           <span>Cookie polycy</span>
+                        </div>
+                        <div class="col-6 px-3">
+                            <div class="row">
+                                <div class="col" style="color: white; font-size: 13px; text-align: center; border-left: 1px solid #a3a3a3;">
+                                    <span>Privacy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </nav>
+    <div class="container-flex">
+        <div class="row mr-0">
+        <div class="col col-xs-12 col-sm-12 col-md-9 col-lg-10 px-0 content-column offset-md-3 offset-lg-2">
+            <!-- HERE IS THE PLACE FOR YOUR CODE!! -->
+            <div class="row mx-0 my-3">
+                <div class="col col-12 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3 pr-0">
+                    <div class="d-flex justify-content-around align-items-start second-div-in-jumbotrone mb-3">
+                        <div>
+                            <a>TRENDING</a>
+                        </div>
+                        <div>
+                            <a>PODCAST</a>
+                        </div>
+                        <div>
+                            <a>MOODS AND GENRES</a>
+                        </div>
+                        <div>
+                            <a>NEW RELEASES</a>
+                        </div>
+                        <div>
+                            <a>DISCOVER</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-10 offset-md-1 pr-0">
+                    <div><h2 class="pb-2 text-white font-weight-bold throw">#THROWBACKTHURSDAY</h2></div>
+                    <div class="row row-cols-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-6 pr-0">
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="eminem.html"><img src="img/img1.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <a href="eminem.html"><span class="text-center text-white font-weight-bold mt-2 pic-description">Rap/ Hip-Hop</span></a>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="queen.html"><img src="img/img 2.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Acidrap</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="allOut90s.html"><img src="img/img 6.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Viral 50-Norway</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 10.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Liricisti</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 8.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">I Love My 90s Hip-Hop</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 9.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">All out 90s</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-white font-weight-bold text-justify my-4">
+                        <h2>Classifiche</h2>
+                    </div>
+                    <div class="row row-cols-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-6 pr-0">
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 3.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Top 50 - Global</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 4.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Top 50 - USA</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 2.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Acidrap</span>
+                            </div>
+                        </div>
+                        <div class="col column-for-covers mb-3">
+                            <div class="img-hover-zoom">
+                                <a href="#"><img src="img/img 5.jpg" alt="Responsive image"></a>
+                            </div>
+                            <div class="my-2">
+                                <span class="text-center text-white font-weight-bold mt-2 pic-description">Top 50 - Germany</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+            <!-- DONT MAKE CHANGIS UNDER THIS LINE! :D -->
+        </div>
+    </div>
+    <div class="row fixed-bottom player d-flex align-items-center">
+        <div class="col col-6 col-md-3 d-flex align-items-center">
+            <div class="d-flex first-div-in-player">
+                <div class="song-image mx-3">
+                    <img src="" alt="">
+                </div>     
+                <div class="song-details d-flex flex-column justify-content-center">
+                    <p id="current-song-name">Song Name</p>
+                    <p id="current-song-artist">Artist</p>
+                </div>
+            </div>
+            <div class="">
+                <i class="far fa-heart ml-3"></i>
+                <i class="far fa-window-maximize ml-3"></i>
+            </div>
+        </div>
+        <div class="col col-12 col-md-6 my-2">
+            <div class="w-100 d-flex justify-content-center player-controls align-items-center">
+                <i class="fas fa-random"></i>
+                <i class="fas fa-step-backward"></i>
+                <i class="far fa-play-circle fa-2x"></i>
+                <i class="fas fa-step-forward"></i>
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <a href=""></a>
+            <div class="d-flex player-song-duration justify-content-center align-items-center mt-3">
+                <span>0:00</span>
+                <div class="progress song-duration ml-2 mr-2">
+                    <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span>7:00</span>
+            </div>
+        </div>
+        <div class="col col-6 col-md-3">
+            <div class="pr-3 w-100 d-flex justify-content-end">
+                <div>
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-headphones ml-2"></i>
+                    <i class="fas fa-volume-up ml-2"></i>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="progress progress-bar ml-2">
+                        <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
+    window.onload = function(){
+    let windowSize = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    let numberOfChildren = document.querySelectorAll(".first-div-in-player > div");
+        if(windowSize < 1074){
+            numberOfChildren[0].setAttribute("style","display:none;")
+            numberOfChildren[1].setAttribute("style","margin-left:12px;")
+        }else{
+            numberOfChildren[0].setAttribute("style","display:block;")
+            numberOfChildren[1].setAttribute("style","margin-left:0px;")
+        }
+        let navbarRegular = document.querySelector(".navbar-menu");
+        if(windowSize < 768){
+            document.querySelector(".navbar").classList.remove("vertical-navbar")
+            document.querySelector(".navbar").classList.remove("flex-column")
+            document.querySelector(".navbar").classList.remove("fixed-top")
+            document.querySelector(".content-of-albums").classList.add("pr-0")
+        }else{
+            document.querySelector(".navbar").classList.add("vertical-navbar")
+            document.querySelector(".navbar").classList.add("flex-column")
+            document.querySelector(".navbar").classList.add("fixed-top")
+            document.querySelector(".content-of-albums").classList.remove("pr-0")
+        }
+        if(windowHeight < 768){
+            document.querySelector(".jumbotron.jumbotron-fluid").style.height = "30%";
+
+        }
+    }
+
+    //Script
+    let navbarNow = document.querySelector(".navbar-menu");
+    window.addEventListener("resize",function(){
+    let windowSize = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    let numberOfChildren = document.querySelectorAll(".first-div-in-player > div");
+        if(windowSize < 1074){
+            numberOfChildren[0].setAttribute("style","display:none;")
+            numberOfChildren[1].setAttribute("style","margin-left:12px;")
+        }else{
+            numberOfChildren[0].setAttribute("style","display:block;")
+            numberOfChildren[1].setAttribute("style","margin-left:0px;")
+        }
+        let navbarRegular = document.querySelector(".navbar-menu");
+        if(windowSize < 768){
+            document.querySelector(".navbar").classList.remove("vertical-navbar")
+            document.querySelector(".navbar").classList.remove("flex-column")
+            document.querySelector(".navbar").classList.remove("fixed-top")
+            document.querySelector(".content-of-albums").classList.add("pr-0")
+        }else{
+            document.querySelector(".navbar").classList.add("vertical-navbar")
+            document.querySelector(".navbar").classList.add("flex-column")
+            document.querySelector(".navbar").classList.add("fixed-top")
+            document.querySelector(".content-of-albums").classList.remove("pr-0")
+        }
+        if(windowHeight < 768){
+            document.querySelector(".jumbotron.jumbotron-fluid").style.height = "30%";
+
+        }
+    })
+</script>
+</html>
