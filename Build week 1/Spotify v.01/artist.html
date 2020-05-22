@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/ce9308328b.js" crossorigin="anonymous"></script>
+    <title>Spotify</title>
+</head>
+<style>
+    body{
+        width: 100%;
+        background-repeat: no-repeat;
+        background-image: linear-gradient(to bottom right, #252525, #030303);
+        background-size: 100% 100%;
+    }
+    .container-flex{
+        position: relative;
+    }
+    .vertical-navbar{
+        background-color: black;
+        height: 90vh;
+        width: 16vw;
+    }
+    .navbarItem:hover > a, .navbarItem:hover i{
+        color: white;
+    }
+    .navbar .fas, .navbar .far{
+        color: #b3b3b3;
+        margin-right: 16px;
+        width: 16px;
+        height: 16px;
+    }
+    .navbar a{
+        font-weight: bold;
+        color: #b3b3b3;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .navbar-brand > img{
+        height: 4vw;
+    }
+    .navbar hr{
+        border-top: 1px solid #404040;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .user-details a{
+        color: white;
+    }
+    .player{
+        background-color: #282828;
+        height: 10vh;
+        color: white;
+        border-top: 2px solid black;
+    }
+    .player i{
+        color: #b3b3b3;
+    }
+    .player i:hover{
+        color: white;
+    }
+    .song-image{
+        width: 6vh;
+        height: 6vh;
+        background-color: white;
+        overflow: hidden;
+    }
+    .song-image img{
+        width: 100%;
+        object-fit: cover;
+    }
+    .song-details{
+        height: 6vh;
+    }
+    .song-details p{
+        margin: 0;
+    }
+    #current-song-artist{
+        font-size: 11px;
+        color: #b3b3b3;
+    }
+    .progress-bar{
+        width: 5vw;
+        height: 3px;
+        background-color: #b3b3b3;
+    }
+    .player-controls i{
+        margin-left: 3vw;
+        margin-left: 3vw;
+        cursor: pointer;
+    }
+    .song-duration{
+        width: 70%;
+        height: 3px;
+    }
+    .player-song-duration{
+        font-size: 12px;
+        color: #b3b3b3;
+    }
+    .navbar-menu{
+        padding-right: 0px;
+    }
+    .jumbotron.jumbotron-fluid{
+        position: relative;
+        width: 100%;
+        height: 40vh;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgb(23, 23, 23)), url("./img/queen main.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    .content-column{
+        margin-bottom: 10vh;
+    }
+    .content-column .row{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .content-column h2{
+        color: white;
+        font-weight: bold;
+        padding-left: 7px;
+    }
+    .column-for-covers{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+    .column-for-covers img{
+        width: 100%;
+        object-fit: cover;
+    }
+    .column-for-covers > div{
+        font-size: 14px;
+        font-weight: bold;
+        color: white;
+        width: 100%;
+        text-align: center;
+    }
+    .column-for-covers > div > p{
+        color: #a3a3a3;
+        font-size: 14px;
+    }
+    .content-column .jumbotron p{
+        color: white;
+        opacity: 0.5;
+        font-size: 11px;
+        text-align: center;
+        letter-spacing: 2px;
+    }
+    .content-column .jumbotron h1{
+        color: white;
+        text-align: center;
+        font-weight: 700;
+        letter-spacing: 2px;
+        font-size: 64px;
+        margin-bottom: 30px;
+    }
+    .content-column .jumbotron .btn{
+        border-radius: 25px;
+        width: 40%;
+        font-size: 11px;
+        height: 35px;
+        letter-spacing: 2px;
+    }
+    .content-column .jumbotron i{
+        color: white;
+    }
+    .second-div-in-jumbotrone div{
+        height: 60px;
+        position: relative; 
+        padding: 15px 0;
+    }
+    .second-div-in-jumbotrone div a{
+        color: white;
+        opacity: 0.5;
+        font-size: 12px;
+        text-align: center;
+        letter-spacing: 2px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        display: inline-block;
+        position: relative;
+    }
+    .second-div-in-jumbotrone div a:after {    
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #1db954;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    .second-div-in-jumbotrone div a:hover:after { 
+        width: 100%; 
+        left: 0; 
+    }
+    .second-div-in-jumbotrone div a:hover{
+        color: white;
+        opacity: 1;
+    }
+    .btn-outline-secondary{
+        background-color: rgba(0, 0, 0, 0.4);
+        color: white;
+        border-color: white;
+    }
+    .btn{
+        border-radius: 4rem;
+        width: 50%;
+        background-color: rgb(17, 231, 106);       
+    }
+    table p{
+        color:white;
+        margin-bottom: 0;
+        cursor: pointer;
+    }
+    .table-first-col{
+        padding: 0px;
+    }
+    .card{
+        border: 0px;
+    }
+    .artist{
+        margin-bottom: 16px;
+        color: #b3b3b3;
+    }
+    .content-col{
+        margin-bottom: 10vh;
+    }
+    .play:hover{
+        background-color: cyan;
+
+    }
+    .controls{
+    cursor: pointer;
+    }
+
+    @media screen and (max-width: 1444px){
+        .navbar-brand > img{
+        height: 4vw;
+        }
+        .content-column{
+        margin-bottom: 15vh;
+        }
+    }
+    @media screen and (max-width: 992px){
+        .vertical-navbar{
+        width: 24vw;
+        }
+        .progress-bar{
+        width: 8vw;
+        }
+        .navbar-brand > img{
+        height: 6vw;
+        }
+    }
+    @media screen and (max-width: 767px){
+        .player > :nth-child(1) {order: 2;}
+        .player > :nth-child(2) {order: 1;}
+        .player > :nth-child(3) {order: 2;}
+        .player{
+            height: 20vh;
+        }
+        .progress-bar{
+        width: 10vw;
+        }
+        .content-column{
+        margin-bottom: 35vh;
+        }
+        .navbar-brand > img{
+        height: 6vh;
+        }
+    }
+    @media screen and (max-height: 767px){
+        .player{
+            height: 25vh;
+        }
+        .navbar-brand > img{
+        height: 9vh;
+        }
+        .vertical-navbar{
+        width: 24vw;
+        height: 75vh;
+        }
+        .content-column{
+        margin-bottom: 32vh;
+        }
+    }
+</style>
+<body>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top vertical-navbar flex-column">
+            <a class="navbar-brand my-3" href="#"><img src="./img/spotify-logo.png" alt="Spotify logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse w-100 h-100 align-items-start" id="navbarNavAltMarkup">
+              <div class="navbar-nav d-flex flex-column h-100 justify-content-between">
+                <div>
+                    <a class="nav-item nav-link active" href="#"><i class="fas fa-home"></i>Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#"><i class="fas fa-search"></i>Features</a>
+                    <a class="nav-item nav-link" href="#"><i class="fas fa-book-open"></i>Pricing</a>
+                </div>
+                <div>
+                    <a class="nav-item nav-link" href="#"><i class="far fa-arrow-alt-circle-down"></i>Install App</a>
+                    <hr class="d-flex flex-wrap">
+                    <a class="nav-item nav-link" href="#"><i class="fas fa-user"></i></i>User Name</a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        <div class="container-flex">
+            <div class="row mr-0">
+            <div class="col col-xs-12 col-sm-12 col-md-9 col-lg-10 px-0 content-column offset-md-3 offset-lg-2">
+            <div class="row mt-3 mr-0 content-col">
+                <div class="col-12 col-md-4 col-lg-3 text-center offset-lg-1 pr-0" style="line-height: 5;">
+                    <div class="card"> 
+                        <img src="./img/Queen ii.jpg" class="card-img-top" alt="queen album poster">
+                        <div class="card-body" style="background-color:rgb(10, 6, 6);"> 
+                          <h5 class="card-title text-white font-bold">Queen II(Deluxe Edition <br> 2011 Remaster)</h5>
+                          <h6 class = "text-white">Queen</h6>
+                          <a href="#" class="btn play ">PLAY</a>
+                          <h6 class = "text-white font-bold">1974 * 16 SONGS</h6>
+                          <span><i class="far fa-heart mr-3 text-white"></i></span>
+                          <span><i class="fa fa-ellipsis-h text-white"></i></span>
+                        </div>
+                      </div>
+                </div>
+                <div class="col-12 col-md-8 col-lg-7 pr-0">
+                    <div class="d-flex"style="justify-content: space-between;align-items:space-between;">
+                    <table class="w-100">
+                        <tr>
+                            <td class="table-first-col">
+                                <i class="fa fa-music mr-2 text-white" ></i>
+                            </td>
+                            <td>
+                                <p class="song-name-in-table">Procession - Remastered 2011 </p>
+                                <p class="artist">Queen</p>
+                            </td>
+                            <td>
+                                <span class = "artist">1:13</span>
+                            </td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                <i class="fa fa-music mr-2 text-white"></i>
+                            </td>
+                        <td>
+                            <p>Father To Son- Remastered 2011 </p>
+                            <p class="artist">Queen</p> 
+                        </td>
+                        <td>
+                            <span class = "artist">6:13</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>White Queen (AS it Began)- Remastered 2011</p>
+                            <p class="artist">Queen</p>
+                        </td>
+                        <td>
+                            <span class = "artist">4:33</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                          <p>Some Day One Day- Remastered 2011</p>
+                          <p class = "artist">Queen</p>
+                        </td>
+                        <td>
+                            <span class = " artist">4:22</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>The Loser In The End- Remastered 2011</p>
+                            <p class = "artist">Queen</p>   
+                        </td>
+                        <td>
+                            <span class = " artist">4:01</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                          <p>Ogre Battle- Remastered 2011</p>
+                          <p class = "artist">Queen</p>
+                       </td>
+                        <td><span class = " artist">4:08</span></td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                          <p>The Fairy Feller's Master-Stroke- Remastered 2011 </p>
+                          <p class = "artist">Queen</p>
+                       </td>
+                        <td><span class = " artist">2:40</span></td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>Never More- Remastered 2011</p>
+                            <p class = "artist">Queen</p>
+                        </td>
+                        <td>
+                            <span class = " artist">1:18</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>The March Of The Black Queen- Remastered 2011</p>
+                            <p class = "artist">Queen</p>
+                        </td>
+                        <td>
+                            <span class = "artist">6:32</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>Funny How Love Is- Remastered 2011</p>
+                            <p class = "artist">Queen</p>
+                        </td>
+                        <td>
+                            <span class = "artist">2:49</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>Seven Seas Of Rhye- Remastered 2011</p>
+                            <p class = "artist">Queen</p>
+                        </td>
+                        <td>
+                            <span class = " artist">2:48</span>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                            <p>See What A Fool I've Been- Live BBc session, London/July/2011 Remix </p>
+                            <p class = "artist">Queen</p>
+                        </td>
+                        <td><span class = " artist">2:48</span></td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fa fa-music mr-2 text-white"></i>
+                        </td>
+                        <td>
+                          <p>White Queen (As It Began)- Live At Hammersmith Odeon,
+                              London/December 1975</p>
+                              <p class = "artist">Queen</p>      
+                       </td>
+                        <td><span class = " artist">2:48</span></td> 
+                    </tr>                    
+                   </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row fixed-bottom player d-flex align-items-center">
+        <div class="col col-6 col-md-3 d-flex align-items-center">
+            <div class="d-flex first-div-in-player">
+                <div class="song-image mx-3">
+                    <img src="" alt="">
+                </div>     
+                <div class="song-details d-flex flex-column justify-content-center">
+                    <p id="current-song-name">Song Name</p>
+                    <p id="current-song-artist">Artist</p>
+                </div>
+            </div>
+            <div class="">
+                <i class="far fa-heart ml-3"></i>
+                <i class="far fa-window-maximize ml-3"></i>
+            </div>
+        </div>
+        <div class="col col-12 col-md-6 my-2">
+            <div class="w-100 d-flex justify-content-center player-controls align-items-center">
+                <i class="fas fa-random"></i>
+                <i class="fas fa-step-backward"></i>
+                <i class="far fa-play-circle fa-2x playStop"></i>
+                <i class="fas fa-step-forward"></i>
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <a href=""></a>
+            <div class="d-flex player-song-duration justify-content-center align-items-center mt-3">
+                <span>0:00</span>
+                <div class="progress song-duration ml-2 mr-2">
+                    <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <span>7:00</span>
+            </div>
+        </div>
+        <div class="col col-6 col-md-3">
+            <div class="pr-3 w-100 d-flex justify-content-end">
+                <div class="controls">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-headphones ml-2"></i>
+                    <i class="fas fa-volume-up ml-2"></i>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div class="progress progress-bar ml-2">
+                        <div class="progress-bar w-100" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+                <script>
+                    window.onload = function(){
+                    let windowSize = window.innerWidth;
+                    let windowHeight = window.innerHeight;
+                    let numberOfChildren = document.querySelectorAll(".first-div-in-player > div");
+                        if(windowSize < 1074){
+                            numberOfChildren[0].setAttribute("style","display:none;")
+                            numberOfChildren[1].setAttribute("style","margin-left:12px;")
+                        }else{
+                            numberOfChildren[0].setAttribute("style","display:block;")
+                            numberOfChildren[1].setAttribute("style","margin-left:0px;")
+                        }
+                        let navbarRegular = document.querySelector(".navbar-menu");
+                        if(windowSize < 768){
+                            document.querySelector(".navbar").classList.remove("vertical-navbar")
+                            document.querySelector(".navbar").classList.remove("flex-column")
+                            document.querySelector(".navbar").classList.remove("fixed-top")
+                            document.querySelector(".content-of-albums").classList.add("pr-0")
+                        }else{
+                            document.querySelector(".navbar").classList.add("vertical-navbar")
+                            document.querySelector(".navbar").classList.add("flex-column")
+                            document.querySelector(".navbar").classList.add("fixed-top")
+                        }
+                        if(windowHeight < 768){
+                            document.querySelector(".jumbotron.jumbotron-fluid").style.height = "30%";
+                
+                        }
+                    }
+
+                    //Script
+                    let navbarNow = document.querySelector(".navbar-menu");
+                    window.addEventListener("resize",function(){
+                    let windowSize = window.innerWidth;
+                    let windowHeight = window.innerHeight;
+                    let numberOfChildren = document.querySelectorAll(".first-div-in-player > div");
+                        if(windowSize < 1074){
+                            numberOfChildren[0].setAttribute("style","display:none;")
+                            numberOfChildren[1].setAttribute("style","margin-left:12px;")
+                        }else{
+                            numberOfChildren[0].setAttribute("style","display:block;")
+                            numberOfChildren[1].setAttribute("style","margin-left:0px;")
+                        }
+                        let navbarRegular = document.querySelector(".navbar-menu");
+                        if(windowSize < 768){
+                            document.querySelector(".navbar").classList.remove("vertical-navbar")
+                            document.querySelector(".navbar").classList.remove("flex-column")
+                            document.querySelector(".navbar").classList.remove("fixed-top")
+                            document.querySelector(".content-of-albums").classList.add("pr-0")
+                        }else{
+                            document.querySelector(".navbar").classList.add("vertical-navbar")
+                            document.querySelector(".navbar").classList.add("flex-column")
+                            document.querySelector(".navbar").classList.add("fixed-top")
+                            document.querySelector(".content-of-albums").classList.remove("pr-0")
+                        }
+                        if(windowHeight < 768){
+                            document.querySelector(".jumbotron.jumbotron-fluid").style.height = "30%";
+                
+                        }
+                    })
+
+                    let songDetails = document.querySelector('#current-song-name');
+                    console.log(songDetails)
+                    let songList = document.querySelectorAll('table tr');
+                    for (let i = 0; i<songList.length; i++){
+                    songList[i].addEventListener("click", function(e){
+
+                        let currentSong = e.currentTarget;
+                        
+                        if(currentSong.tagName === 'td p'){
+                        
+                        songDetails.innerText = currentSong;
+                            
+                        }else{
+                            
+                        } songDetails.classList.toggle('current-Song-name')    
+                    })
+                     }
+
+                    
+                    
+
+                    let heartIcons = document.querySelectorAll('.fa-heart')
+                    for(let i=0;i<heartIcons.length;i++){
+                        let heartIcon = heartIcons[i]
+                    heartIcon.addEventListener('click',function(){
+                        if(heartIcon.classList.contains("fa")){
+                            heartIcon.classList.remove("fa");
+                            heartIcon.classList.add("far");
+                        }else{    
+                            heartIcon.classList.remove("far");
+                            heartIcon.classList.add("fa");
+                        }
+                    })
+                    }
+
+              let playButton = document.querySelector('.playStop');
+              playButton.addEventListener('click', function(){
+                  if(playButton.classList.contains("fa-play-circle")){
+                  let music = new Audio('songs/frank.mp3')
+                  music.play()
+                  music.classList.add('current-song-name')
+                  playButton.classList.remove("fa-play-circle")
+                  playButton.classList.add("fa-pause-circle")
+                  }else{
+                    let music = new Audio('songs/frank.mp3')
+                    music.pause();
+                    music.currentTime = 0;
+                  music.classList.add('current-song-name')
+                  playButton.classList.remove("fa-pause-circle")
+                  playButton.classList.add("fa-play-circle")
+                  }
+              })
+              function pause(){
+                let music = new Audio('songs/frank.mp3')
+                  music.stop()
+              }
+              playButton.onclick = pause()
+                </script>
+</html>
