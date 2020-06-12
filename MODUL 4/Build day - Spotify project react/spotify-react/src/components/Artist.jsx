@@ -25,7 +25,7 @@ class Artist extends React.Component {
             })
             const albums = await res.json()
             this.setState({
-                albums,
+                albums : albums.data,
                 isLoading: false,
               })
           } catch (err) {
@@ -37,7 +37,7 @@ class Artist extends React.Component {
     }
 
     render(){
-        console.log(this.state.albums.data)
+        console.log(this.state.albums)
         return(
             <Container fluid>
                 <Row>
@@ -61,7 +61,7 @@ class Artist extends React.Component {
                         <Col className='col-12 col-lg-10 offset-lg-1 content-of-albums'>
                             <h2 className="my-4" style={{textAlign: "left"}}>Albums</h2>
                             <div className = "row row-cols-3 row-cols-md-4 row-cols-lg-6 pr-0 content-albums">
-                                <Gallery albums={this.state.albums.data} />
+                                <Gallery albums={this.state.albums} />
                             </div>
                         </Col>
                     </Col>

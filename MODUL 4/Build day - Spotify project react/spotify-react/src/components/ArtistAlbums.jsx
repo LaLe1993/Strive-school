@@ -1,14 +1,13 @@
 import React from 'react';
 import {} from 'react-bootstrap';
 
-const ArtistAlbums = (album) => {
+const ArtistAlbums = (props) => {
+    console.log("Artist ", props.albums)
     return(
             <>
-                {/* <a href="album.html?id=${newA.id}"><img src="${newA.cover_xl}" alt="Bohemian rhapsody" /></a>
-                <div class="my-2">
-                    <span>${newA.title}</span>
-                    <p></p>
-                </div> */}
+                <img src={props.albums} alt="Bohemian rhapsody" />
+                <div className="my-2">
+                </div>
             </>
 
     )

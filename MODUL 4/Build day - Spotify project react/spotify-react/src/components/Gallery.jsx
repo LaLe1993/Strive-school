@@ -6,8 +6,8 @@ const Gallery = (props) => {
     console.log(props.albums)
         return (
             <Col className="column-for-covers mb-4">
-              {/* {props.albums.map(album => <ArtistAlbums album={album} key={album.id} />)} */}
-            </Col>
+              <ArtistAlbums albums={props.albums}/>
+            </Col>  
         );
 }
 
