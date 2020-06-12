@@ -3,8 +3,36 @@ import { Navbar , Nav, Image } from 'react-bootstrap';
 
 class NavBar extends React.Component {
     render(){
+
+        function windowSize() {
+            let windowSize = window.innerWidth;
+            let numberOfChildren = document.querySelectorAll(".first-div-in-player > div");
+            if(windowSize < 1074){
+                numberOfChildren[0].setAttribute("style","display:none;")
+                numberOfChildren[1].setAttribute("style","margin-left:12px;")
+            }else{
+                numberOfChildren[0].setAttribute("style","display:block;")
+                numberOfChildren[1].setAttribute("style","margin-left:0px;")
+            }
+            if(windowSize < 768){
+                document.querySelector(".navbar").classList.remove("vertical-navbar")
+                document.querySelector(".navbar").classList.remove("flex-column")
+                document.querySelector(".navbar").classList.remove("fixed-top")
+            }else{
+                document.querySelector(".navbar").classList.add("vertical-navbar")
+                document.querySelector(".navbar").classList.add("flex-column")
+                document.querySelector(".navbar").classList.add("fixed-top")
+            }
+        }
+    
+    
+        window.onload = windowSize
+    
+        //Script
+        window.addEventListener("resize",windowSize)
+
         return(
-            <Navbar className="navbar navbar-expand-md navbar-dark fixed-top vertical-navbar flex-column">
+            <Navbar expand='md' className="navbar navbar-dark fixed-top vertical-navbar flex-column">
                 <Navbar.Brand href="#home" className='my-3'>
                     <Image src="/assets/logo.png" alt="Spotify logo" />
                 </Navbar.Brand>

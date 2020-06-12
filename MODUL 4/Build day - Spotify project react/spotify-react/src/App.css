@@ -59,6 +59,11 @@ body{
   width: 16px;
   height: 16px;
 }
+
+.navbar {
+  background-color: black;
+}
+
 .navbar a{
   font-weight: bold;
   color: #b3b3b3;
