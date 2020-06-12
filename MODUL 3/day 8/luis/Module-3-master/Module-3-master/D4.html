@@ -1,0 +1,300 @@
+<!doctype html>
+
+    <!--
+            You are creating the "shopping cart experience" for a Online Marketplace.
+            You have the list of the available books from the current API:
+            https://striveschool.herokuapp.com/books
+            What you have to do is:
+          √ 0) Get all the products from the API using a fetch
+          √ 1) Display the list of items available on the page using template literals `` and .forEach
+          √ 2) Add a "add to cart button"
+            3) When the button is pressed, change the style of the item and add it to another list
+          √ 4) Add "skip" button next to each item
+          √ 5) When pressed, the button should remove from the page the item not interesting from the user
+          √ 6) Add a "search bar". When the user types more than 3 chars, you should filter the content of the page to show only the items with a matching name (hint: use .filter method)
+            7) Allow the user to delete items from the cart list
+            
+            [EXTRA]
+            8) Add a "clean cart" button, to clean the whole list.
+            9) Create a second "detail page" for the product. When the user clicks on a product name, the app should redirect him to the secondary page, passing the ASIN in query string
+            10) In page "detail" show some details of the selected product
+        -->
+<html lang="en">
+  <head>
+    <title>Strive Bookstore</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #181818;
+        }
+        
+        .image-wrapper {
+            height: calc(100% - 150px);
+        }
+        
+        .card-img-top {
+            cursor: pointer;
+            width: 80%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.4s ease-in-out;
+        }
+
+        .image-wrapper:hover img {
+            transform: scale(1.1);
+            opacity: 0.4;
+        }
+
+        .selected {
+            border: 1px solid yellowgreen
+        }
+
+        .image-wrapper button {
+            display: none;
+            position: absolute; 
+            top: 50%;
+            left: 25%;
+            width: 50%;
+            background-color: #18181878;
+        }
+        
+        .image-wrapper .skip-btn {
+            top:10%;
+        }
+        
+        .image-wrapper:hover button {
+            display: block;
+        }
+
+        .card-title {
+            font-size: 0.9rem;
+        }
+        .card-body {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.8rem;
+            height: 150px;
+        }
+
+        .font-awesome-font {
+            font-family: "FontAwesome"
+        }
+
+        #shopping-cart {
+            min-height: 400px;
+            max-height: 70vh;
+            border-radius: 20px;
+            background-color: rgba(255, 255, 255, 0.278);
+            overflow: scroll;
+        }
+
+        #shopping-cart .col-8,
+        #shopping-cart .col-2 {
+            box-sizing: content-box;
+            padding-left: 0px;
+            padding-right: 0px;
+            /* height:50px; */
+            margin-top: 5px;
+            /* margin-bottom: 5px; */
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.402)
+        }
+
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand navbar-dark bg-dark sticky-top">
+        <div class="nav navbar-nav">
+            <a class="nav-item nav-link active" href="#">Strive Bookstore <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="#">Home</a>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="form-group position-relative">
+          <input type="text" class="form-control rounded-pill text-center bg-transparent text-white w-50 mx-auto" placeholder="Search" oninput="filterCatalogue(this.value)">
+          <label for="search-box" class="position-absolute text-white-50 font-awesome-font" style="top: 16%; left: 26%;">&#xF002; </label>
+        </div>
+    </div>
+      
+    <div class="container my-5">
+        <div class="row position-relative">
+            <div class="col-12 col-md-4 order-md-1">
+                <div class="container-fluid position-sticky" style="top:80px">
+                    <h4 class="text-white text-center">Your Cart</h4>
+                    <div class="row text-white align-content-start px-4 py-3" id="shopping-cart"></div>
+                    <div class="row text-white" id="cart-total">
+
+                        <div class="col-8">
+                            <span>Your cart total is....</span>
+                        </div>
+                        <div class="col-4">
+                            <span>5000€</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
+                <div id="books-wrapper" class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script>
+        let booksWrapper = document.querySelector("#books-wrapper")
+        let catalogue = []
+
+        class Book {
+            constructor(asin, title, img, price, category) {
+                this.asin = asin
+                this.title = title
+                this.img = img
+                this.price = price
+                this.category = category
+            }
+        }
+
+        window.onload = function () {
+            fetch("https://striveschool.herokuapp.com/books?offset=0&limit=50")
+            .then(response => response.json())
+            .then(catalogueResponse => {
+                console.log("about to loop")
+                
+                for (let bookObj of catalogueResponse) {
+                    let book = new Book(...Object.values(bookObj))
+                    catalogue.push(book)
+                    displayBook(book)
+                }
+                
+                console.log("just looped")
+            })
+        }
+
+        function displayBook(book) {
+            let title = String(book.title).substr(0,50)
+            booksWrapper.innerHTML += `
+                <div class="card bg-transparent d-flex text-white position-relative">
+                    <div class="image-wrapper d-flex">
+                        <img class="card-img-top mx-auto" src="${book.img}" alt=""></img>
+                        <button type="button" class="btn btn-outline-light" onclick="newElementInCart(this.parentNode, '${book.asin}');"><span class="font-awesome-font">&#xf217;</span> Add</button>
+                        <button type="button" class="btn btn-outline-warning skip-btn" onclick="skip(this.parentNode)">Skip</button>
+                    </div>
+                    <div class="card-body text-center">
+                        <p class="card-title">${title}</p>
+                        <span class="card-text d-block">${book.category}</span>
+                    </div>
+                </div>  
+            `
+        }
+
+        function newElementInCart(parentNode, asin) {
+            if (addToCart(asin)) togglePic(parentNode)
+        }
+
+        function togglePic(parentNode) {
+            let bookImg = parentNode.querySelector("img")
+            bookImg.classList.toggle("selected")
+        }
+        
+        
+        function addToCart(asin) {
+            let book = catalogue.find(
+                (book) => book.asin == asin
+            )
+
+            let inCart = currentCart.find(
+                (element) => element.item == book
+            )
+
+            if (inCart) {
+                inCart.quantity++ 
+            } else {
+                currentCart.push(
+                    new ShoppingCartEntry(book, 1)
+                )
+            }
+            
+            refreshCart()
+
+            return (inCart)
+        }
+        
+        var shoppingCart = document.querySelector("#shopping-cart")
+        var currentCart = []
+
+        class ShoppingCartEntry {
+            constructor(element, quantity) {
+                this.item = element
+                this.quantity = quantity
+            }
+        }
+
+        function refreshCart() {
+            shoppingCart.innerHTML = ""
+
+            for (let element of currentCart) {
+                if (element instanceof ShoppingCartEntry) {
+                    let item = element.item
+                    if (item instanceof Book) {
+                        shoppingCart.innerHTML += `
+                            <div class="col-8">${item.title}</div>
+                            <div class="col-2 text-center">${element.quantity}</div>
+                            <div class="col-2 text-right">€${item.price}</div>
+                        `
+                    }
+                } // else sth went wrong...
+            }
+        }
+
+        function skip(parentNode) {
+            parentNode.parentNode.remove()
+        }
+
+        var filteredCatalogue = []
+
+        function filterCatalogue(query) {
+            query = String(query).toLowerCase()
+            console.log(query)
+            if (query !== "") {
+                filteredCatalogue = catalogue.filter(
+                    (book) => {
+                        return (book.title.toLowerCase().includes(query) 
+                         || book.category.toLowerCase().includes(query)
+                         )
+                    }
+                )
+            } else {
+                filteredCatalogue = catalogue
+            }
+            console.log(filteredCatalogue)
+            booksWrapper.innerHTML = ""
+            
+            for (let [index, book] of filteredCatalogue.entries()) {
+                displayBook(book)
+            }
+        }
+
+
+    </script>
+  </body>
+</html>
