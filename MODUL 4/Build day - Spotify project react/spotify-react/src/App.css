@@ -62,8 +62,7 @@ body{
 .navbar a{
   font-weight: bold;
   color: #b3b3b3;
-  padding-left: 0;
-  padding-right: 0;
+  display: flex;
 }
 .navbar-brand > img{
   height: 4vw;
