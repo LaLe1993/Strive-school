@@ -10,7 +10,7 @@ class Artist extends React.Component {
         errMess: ""
       };
 
-    componentWillMount = async () => {
+    componentDidMount = async () => {
         try {
             const res = await fetch("https://deezerdevs-deezer.p.rapidapi.com/artist/412/albums?limit=12", {
 
