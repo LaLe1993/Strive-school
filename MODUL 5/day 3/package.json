@@ -1,0 +1,20 @@
+{
+  "name": "m5-d3-midleware",
+  "version": "1.0.0",
+  "description": "midleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config ./sec/index.js"
+  },
+  "author": "Strahinja",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
