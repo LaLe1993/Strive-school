@@ -1,0 +1,30 @@
+[
+    {
+        "asin": "1940026091",
+        "title": "Pandemic",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/91xrEMcvmQL.jpg",
+        "price": 7.81,
+        "category": "scify"
+    },
+    {
+        "asin": "1940026092",
+        "title": "Shards of Hope",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/91ku%2B0LppPL.jpg",
+        "price": 7.59,
+        "category": "scify"
+    },
+    {
+        "asin": "1940026093",
+        "title": "Born of Vengeance",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/91J28bj3PYL.jpg",
+        "price": 26.09,
+        "category": "scify"
+    },
+    {
+        "asin": "1940026094",
+        "title": "Gameboard of the Gods",
+        "img": "https://images-na.ssl-images-amazon.com/images/I/81-vppSolJL.jpg",
+        "price": 7.61,
+        "category": "scify"
+    }
+]
