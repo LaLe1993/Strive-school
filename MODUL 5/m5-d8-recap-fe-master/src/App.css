@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  background-color: wheat;
+}
+
+.darkCard {
+  background-color: #282c34;
+  color: white;
+}
+
+.underline{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+}
