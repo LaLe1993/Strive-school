@@ -7,7 +7,7 @@ class SingleBook extends Component {
         const { title, img, category, price, asin } = this.props.item
 
         return (
-            <Card>
+            <Card className='h-100 darkCard'>
                 <Card.Img variant="top" src={img} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
