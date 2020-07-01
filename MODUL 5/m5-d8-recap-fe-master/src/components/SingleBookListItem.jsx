@@ -18,7 +18,7 @@ class SingleBookListItem extends Component {
         const { title, img, category, price, asin } = this.props.item
 
         return (
-            <Media>
+            <Media className='underline'>
             <img
               width={64}
               height={64}
@@ -28,11 +28,11 @@ class SingleBookListItem extends Component {
             />
             <Media.Body>
               <h5>{title}</h5>
-              <p>
-                {category} - {price}
-                <Button className="ml-5" variant="danger" onClick={() => this.deleteBook(asin) } >X</Button>
-                <Button className="ml-5" variant="warning"><Link to={"/details/" + asin}>Edit</Link></Button>
-              </p>
+              <div className='d-flex justify-content-between'>
+                <p>{category} - {price}</p>
+                <div><Button className="ml-5" variant="danger" onClick={() => this.deleteBook(asin) } >Delete</Button>
+                <Button className="ml-5" variant="warning"><Link to={"/details/" + asin}>Edit</Link></Button></div>
+              </div>
             </Media.Body>
           </Media>
         )
