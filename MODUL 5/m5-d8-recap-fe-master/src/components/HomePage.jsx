@@ -10,9 +10,9 @@ class HomePage extends Component {
     render() {
         return (
             <Container>
-                <Row>
+                <Row className='mt-3'>
                 {this.state.books.map(book => 
-                <Col md={4} sm={6} lg={2} >
+                <Col md={4} sm={6} lg={3} key={book.asin} className='mb-3'>
                     <SingleBook item={book} /> 
                 </Col>
                 )} 
