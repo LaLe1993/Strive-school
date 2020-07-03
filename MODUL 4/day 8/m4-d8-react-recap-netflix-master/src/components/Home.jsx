@@ -1,18 +1,61 @@
 import React, { Component } from "react";
-import { Container, Row, Col, DropdownButton, Dropdown } from "react-bootstrap";
+import { Container, Row, Col, Dropdown, Alert } from "react-bootstrap";
 import Gallery from "./Gallery";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      displayGallery: true,
+      harryPotter: [],
+      spiderMan: [],
+      matrix: [],
+      loading: true,
+      error: false,
+      comments: [],
     };
   }
 
+  
+  // url = "http://www.omdbapi.com/?apikey=85a2b045";
+
   componentDidMount() {
-    // console.log("componentDidMount");
+    Promise.all([
+      fetch("http://localhost/3001/media")
+        .then((response) => response.json())
+        .then((responseObject) =>
+        this.setState({ harryPotter: responseObject.Search })
+        ),
+        
+      fetch("http://www.omdbapi.com/?apikey=85a2b045" + "&s=spider%20man")
+        .then((response) => response.json())
+        .then((responseObject) =>
+          this.setState({ spiderMan: responseObject.Search })
+        ),
+
+      fetch("http://www.omdbapi.com/?apikey=85a2b045" + "&s=matrix")
+        .then((response) => response.json())
+        .then((responseObject) =>
+          this.setState({ matrix: responseObject.Search })
+        ),
+    ])
+      .then(() => this.setState({ loading: false }))
+      .catch((err) => {
+        this.setState({ error: true });
+        console.log("An error has occurred:", err);
+      });
   }
+  
+
+  fetchComments = async (movieID) => {
+    const commentsUrl = "https://striveschool.herokuapp.com/api/comments/";
+    const comments = await fetch(commentsUrl + movieID, {
+      headers: new Headers({
+        Authorization: "Basic dXNlcjc6M1VVNWRZRnZlblJ1UlA3RQ==",
+      }),
+    }).then((resp) => resp.json());
+
+    this.setState({ comments });
+  };
 
   render() {
     // console.log("render method");
@@ -56,14 +99,35 @@ class Home extends Component {
             </Row>
 
         <Gallery /> */}
+        {this.state.error && (
+          <Alert variant="danger">
+            An error has occurred, please try again later
+          </Alert>
+        )}
 
-        {this.state.displayGallery && (
+        {!this.state.error && (
           <div>
-            {/* This Gallery will not receive props.title inside, only props.imageSrc */}
-            <Gallery title="New" imageSrc="/assets/6.png" />
-
-            <Gallery title="Trending" imageSrc="/assets/8.png" />
-            <Gallery title="Horror" imageSrc="/assets/7.png" />
+            <Gallery
+              title="Harry Potter"
+              loading={this.state.loading}
+              movies={this.state.harryPotter.slice(0, 6)}
+              comments={this.state.comments}
+              fetchComments={this.fetchComments}
+            />
+            <Gallery
+              title="Spider Man"
+              loading={this.state.loading}
+              movies={this.state.spiderMan.slice(0, 6)}
+              comments={this.state.comments}
+              fetchComments={this.fetchComments}
+            />
+            <Gallery
+              title="Matrix"
+              loading={this.state.loading}
+              movies={this.state.matrix.slice(0, 6)}
+              comments={this.state.comments}
+              fetchComments={this.fetchComments}
+            />
           </div>
         )}
       </Container>
