@@ -1,6 +1,4 @@
-const url='https://striveschool.herokuapp.com/api/movies/'
-let givenstring='user26:Q2h7j3FtxhdxMdab'
-let encoded=window.btoa(givenstring)
+const url='http://localhost:3001/media'
 
 const movieCategories = async()=>{
 
@@ -8,21 +6,20 @@ const movieCategories = async()=>{
       method:"GET",
       
       headers: new Headers({
-          'Content-Type':'application/json',
-          'Authorization':'Basic '+encoded
+          'Content-Type':'application/json'
       }),
 
   })//this is getting response from api fetching 
+  console.log("media:", movieResponse)
   return await movieResponse.json()//this is returning the result of thr promise in a usable format
 }
 
 const getProducts=async()=>{  
-    let response = await fetch(url + "Action",{
+    let response = await fetch(url,{
         method:"GET",
         
         headers: new Headers({
-            'Content-Type':'application/json',
-            'Authorization':'Basic '+encoded
+            'Content-Type':'application/json'
         }),
 
     })//this is getting response from api fetching 
@@ -60,8 +57,7 @@ const saveProduct= async (productObj)=>{
         method:"POST",
         body:JSON.stringify(productObj),
         headers: new Headers({
-            'Content-Type':'application/json',
-            'Authorization':'Basic '+encoded
+            'Content-Type':'application/json'
         }),
     })
     return response

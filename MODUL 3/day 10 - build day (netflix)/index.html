@@ -138,7 +138,7 @@
     <!-- HERE IS CONTENT -->
     <div class="container">
         <h1>TV Shows</h1>
-        <div class="content my-3">
+        <div class="row content my-3">
         </div>
 
     <!-- HERE IS FOOTER -->
@@ -192,51 +192,44 @@
     <script src="./helper.js"></script>
     <script>
         window.onload=async()=>{
-            let categories = await movieCategories();
-            console.log(categories);
-            let content = document.querySelector(".content")
-            if(categories.length > 0){
-                for(let i = 0;i<categories.length;i++){
-                    let categoryRow = document.createElement("div");
-                    categoryRow.classList.add("category-row")
-                    let categoryNameDiv = document.createElement("div");
-                    categoryNameDiv.classList.add("title-wrapper");
-                    let categoryName = document.createElement("h4");
-                    categoryName.classList.add("category");
-                    categoryName.innerText = `${categories[i]}`;
-                    let newRow = document.createElement("div");
-                    newRow.classList.add("row", `${categories[i]}`);
-                    categoryNameDiv.appendChild(categoryName);
-                    categoryRow.appendChild(categoryNameDiv);
-                    categoryRow.appendChild(newRow);
-                    content.appendChild(categoryRow);
-                }
-            } else {
-                productsDiv.innerHTML=`<h1>No planned events yet</h1>`
-            }
-            
+            // let categories = await movieCategories();
+            // console.log("Movies:",categories);
+            // let content = document.querySelector(".content")
+            // if(categories.length > 0){
+            //     for(let i = 0;i<categories.length;i++){
+            //         let categoryRow = document.createElement("div");
+            //         categoryRow.classList.add("category-row")
+            //         let categoryNameDiv = document.createElement("div");
+            //         categoryNameDiv.classList.add("title-wrapper");
+            //         let categoryName = document.createElement("h4");
+            //         categoryName.classList.add("category");
+            //         categoryName.innerText = `${categories[i]}`;
+            //         let newRow = document.createElement("div");
+            //         newRow.classList.add("row", `${categories[i]}`);
+            //         categoryNameDiv.appendChild(categoryName);
+            //         categoryRow.appendChild(categoryNameDiv);
+            //         categoryRow.appendChild(newRow);
+            //         content.appendChild(categoryRow);
+            //     }
+            // } else {
+            //     productsDiv.innerHTML=`<h1>No planned events yet</h1>`
+            // }
+            let productsDiv=document.querySelector('.content')
             let products = await getProducts()
-            console.log(products)
-            if(categories.length>0){
-                for(let i = 0;i<categories.length;i++){
-                    if(products.length >0){
-                        let productsDiv=document.querySelector(`.${categories[i]}`)
-                        console.log(productsDiv)
-                        let categoriesValue = categories[i];
+            console.log("Products:", products)
+            if(products.length>0){
                         for(let x = 0;x<products.length;x++){
-                            if(products[i].category === categoriesValue){
-                            let product =document.createElement("div");
+                            let product = document.createElement("div");
                                 product.classList.add("col", "col-6", "col-sm-4", "col-md-3", "col-lg-2", "mb-2")
                                 product.innerHTML=`
-                                <img src="${products[x].imageUrl}" alt="Responsive image">
+                                <img src="${products[x].Poster}" alt="Responsive image">
+                                <div class='my-2' style='color:white; text-aligment:center;' >${products[x].Title}</div>
                                 `
                                 productsDiv.appendChild(product);
-                            }
                         }
                     } else {
                         productsDiv.innerHTML=`<h1>No planned events yet</h1>`
                     }
-                }
             //     for(let i = 0;i< categories.length;i++){
             //         let productsDiv=document.querySelector(`.row.${categories[i]}`)
             //         console.log(productsDiv);
@@ -249,9 +242,9 @@
             //                 productsDiv.appendChild(product)
             //         }
             //   }
-          }else{
-            productsDiv.innerHTML=`<h1>No planned events yet</h1>`
-          }
+        //   }else{
+        //     productsDiv.innerHTML=`<h1>No planned events yet</h1>`
+        //   }
       }
   </script>
   </body>
