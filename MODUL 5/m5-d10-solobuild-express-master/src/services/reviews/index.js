@@ -1,9 +1,11 @@
 const express = require("express") // third party module
-const fs = require("fs") // core module dedicated to file system interactions
 const path = require("path") // core module
 const uniqid = require("uniqid") // third party module
+const fs = require("fs-extra")
+const { readDB, writeDB } = require("../../utilities")
 
 const router = express.Router()
+
 
 const reviewsFilePath = path.join(__dirname, "reviews.json")
 
@@ -41,23 +43,44 @@ router.get("/:id", (request, response) => {
     response.status(201).send(newReview)
   })
 
-  router.put("/:id", (request, response) => {
+//   router.put("/:id", (request, response) => {
   
-    const fileContentAsABuffer = fs.readFileSync(reviewsFilePath)
-    const reviewsArray = JSON.parse(fileContentAsABuffer.toString())
+//     const fileContentAsABuffer = fs.readFileSync(reviewsFilePath)
+//     const reviewsArray = JSON.parse(fileContentAsABuffer.toString())
 
-    const filteredReviewsArray = reviewsArray.filter(
-      (review) => review.imdbID !== request.params.id
-    )
+//     const filteredReviewsArray = reviewsArray.filter(
+//       (review) => review.imdbID !== request.params.id
+//     )
 
-    const review = request.body
-    review._id = request.params.id
+//     const review = request.body
+//     review._id = request.params.id
   
-    filteredReviewsArray.push(review)
+//     filteredReviewsArray.push(review)
   
-    fs.writeFileSync(reviewsFilePath, JSON.stringify(filteredReviewsArray))
+//     fs.writeFileSync(reviewsFilePath, JSON.stringify(filteredReviewsArray))
   
-    response.send("Ok")
+//     response.send("Ok")
+//   })
+
+  router.put("/:id", async (req, res, next) => {
+    try {
+        console.log(reviewsFilePath)
+      const reviews = await readDB(reviewsJsonPath)
+      const review = reviews.find((b) => b._id === req.params.id)
+      if (review) {
+        const position = reviews.indexOf(review)
+        const reviewUpdated = { ...review, ...req.body } // In this way we can also implement the "patch" endpoint
+        reviews[position] = reviewUpdated
+        await writeDB(reviewsJsonPath, reviews)
+        res.status(200).send("Updated")
+      } else {
+        const error = new Error(`Book with asin ${req.params.asin} not found`)
+        error.httpStatusCode = 404
+        next(error)
+      }
+    } catch (error) {
+      next(error)
+    }
   })
 
   router.delete("/:id", (request, response) => {
