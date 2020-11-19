@@ -44,10 +44,6 @@ class Reservations extends React.Component {
             <div className="ml-2">
               <Spinner animation="border" variant="success" />
             </div>
-          </div>
-
-            <div>
-              <Spinner color="success" />
             </div>
           </div>
         )}
