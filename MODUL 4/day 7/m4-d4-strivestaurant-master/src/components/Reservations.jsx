@@ -25,8 +25,7 @@ class Reservations extends React.Component {
       })
     } catch (err) {
       this.setState({
-        isLoading: false,
-        errMess: err.message,
+        errMess: err.message
       });
     }
   };
@@ -54,7 +53,7 @@ class Reservations extends React.Component {
                 <ListGroup key={index}>
                   <ListGroup.Item>
                     From: {reservation.name} for {reservation.numberOfPersons} persons
-                    at {format(parseISO(reservation.dateTime), "yyyy-MM-dd | HH:mm")} {reservation.smoking && <span>in smoking area</span> || <span>in non smoking area</span>}
+                    at {format(parseISO(reservation.dateTime), "yyyy-MM-dd HH:mm")} {reservation.smoking && <span>in smoking area</span> || <span>in non smoking area</span>}
                   </ListGroup.Item>
                 </ListGroup>
               ))}
