@@ -63,7 +63,7 @@ class ReservationForm extends React.Component {
   };
 
   updateReservationField = input => {
-    let reservation = this.state.reservation;
+    let reservation = {...this.state.reservation};
     let currentId = input.currentTarget.id;
 
     switch (currentId) {
@@ -109,6 +109,7 @@ class ReservationForm extends React.Component {
                   placeholder="Your name"
                   value={this.state.reservation.name}
                   onChange={this.updateReservationField}
+                  required
                 />
               </Form.Group>
             </Col>
@@ -121,6 +122,7 @@ class ReservationForm extends React.Component {
                 placeholder="Your phone"
                 value={this.state.reservation.phone}
                 onChange={this.updateReservationField}
+                required
               />
             </Form.Group>
           </Row>
@@ -136,6 +138,7 @@ class ReservationForm extends React.Component {
                   id="numberOfPersons"
                   value={this.state.reservation.numberOfPersons}
                   onChange={this.updateReservationField}
+                  required
                 >
                   <option>1</option>
                   <option>2</option>
@@ -171,6 +174,7 @@ class ReservationForm extends React.Component {
                   placeholder="Date and Time"
                   value={this.state.reservation.dateTime}
                   onChange={this.updateReservationField}
+                  required
                 />
               </Form.Group>
             </Col>

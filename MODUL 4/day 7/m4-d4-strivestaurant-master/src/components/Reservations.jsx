@@ -9,7 +9,8 @@ class Reservations extends React.Component {
     this.state = {
       reservations: [],
       isLoading: true,
-      errMess: ""
+      errMess: "",
+      smoking: ""
     };
   }
 
@@ -33,6 +34,7 @@ class Reservations extends React.Component {
 
   render() {
     console.log('RESERVATION PROPS --> ', this.props)
+
     return (
       <Container>
         <h3 className="mt-5 mb-3">RESERVATIONS</h3>
@@ -50,9 +52,8 @@ class Reservations extends React.Component {
               this.state.reservations.map((reservation, index) => (
                 <ListGroup key={index}>
                   <ListGroup.Item>
-                    From: {reservation.name}, for {reservation.numberOfPersons}{" "}
-                    at{" "}
-                    {format(parseISO(reservation.dateTime), "yyyy-MM-dd | HH:mm")}
+                    From: {reservation.name}, for {reservation.numberOfPersons} persons 
+                    at {format(parseISO(reservation.dateTime), "yyyy-MM-dd | HH:mm")} 
                   </ListGroup.Item>
                 </ListGroup>
               ))}
