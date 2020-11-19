@@ -40,7 +40,13 @@ class Reservations extends React.Component {
         <h3 className="mt-5 mb-3">RESERVATIONS</h3>
         {this.state.isLoading && (
           <div className="d-flex justify-content-center mb-5">
-            Fetching reservations...
+            <div className="d-flex justify-content-center my-5">
+            Reserving your table, please wait
+            <div className="ml-2">
+              <Spinner animation="border" variant="success" />
+            </div>
+          </div>
+
             <div>
               <Spinner color="success" />
             </div>
@@ -52,8 +58,8 @@ class Reservations extends React.Component {
               this.state.reservations.map((reservation, index) => (
                 <ListGroup key={index}>
                   <ListGroup.Item>
-                    From: {reservation.name}, for {reservation.numberOfPersons} persons 
-                    at {format(parseISO(reservation.dateTime), "yyyy-MM-dd | HH:mm")} 
+                    From: {reservation.name} for {reservation.numberOfPersons} persons
+                    at {format(parseISO(reservation.dateTime), "yyyy-MM-dd | HH:mm")} {reservation.smoking && <span>in smoking area</span> || <span>in non smoking area</span>}
                   </ListGroup.Item>
                 </ListGroup>
               ))}
