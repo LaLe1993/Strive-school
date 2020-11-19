@@ -9,8 +9,7 @@ class Reservations extends React.Component {
     this.state = {
       reservations: [],
       isLoading: true,
-      errMess: "",
-      smoking: ""
+      errMess: ""
     };
   }
 
