@@ -11,8 +11,12 @@ class NetflixNavbar extends Component {
 
   searchStringHandler = (e) => {
     if (e.keyCode === 13) {
-      // WHEN ENTER KEY IS PRESSED
-      this.props.showSearchResult(this.state.searchString);
+      if (this.state.searchString.length==0){
+        alert('Search is empty!')
+      }else{
+        // WHEN ENTER KEY IS PRESSED
+        this.props.showSearchResult(this.state.searchString);
+      }
     } else {
       this.setState({ searchString: e.currentTarget.value });
     }
@@ -20,7 +24,7 @@ class NetflixNavbar extends Component {
 
   render() {
     return (
-      <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#221f1f" }}>
+      <Navbar variant="dark" expand="lg" style={{ backgroundColor: "black" }}>
         <Navbar.Brand href="/">
           <img
             src="assets/logo.png"

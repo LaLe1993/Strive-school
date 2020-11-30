@@ -30,18 +30,18 @@ class Register extends React.Component {
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="Enter name" required />
+                        <Form.Control type="text" placeholder="Enter name" minLength={2} maxLength={32} pattern="[A-Za-z]{2,32}" required />
                         </Form.Group>
         
                         <Form.Group as={Col} controlId="formGridSurname">
                         <Form.Label>Surname</Form.Label>
-                        <Form.Control type="text" placeholder="Enter surname" required />
+                        <Form.Control type="text" placeholder="Enter surname" minLength={3} maxLength={32} pattern="[A-Za-z]{3,32}" required />
                         </Form.Group>
                     </Form.Row>
                     <Form.Row>
                         <Form.Group as={Col} controlId="formGridEmail">
                             <Form.Label>Email</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email" required />
+                            <Form.Control type="email" placeholder="Enter email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
                         </Form.Group>
         
                         <Form.Group as={Col} controlId="formGridPassword">
@@ -68,14 +68,14 @@ class Register extends React.Component {
                         <Form.Control placeholder="Enter City" required />
                         </Form.Group>
         
-                        <Form.Group as={Col} controlId="formGridCity">
-                        <Form.Label>State</Form.Label>
-                        <Form.Control placeholder="Enter State" required />
-                        </Form.Group>
-        
                         <Form.Group as={Col} controlId="formGridZip">
                         <Form.Label>Zip</Form.Label>
-                        <Form.Control type='number' placeholder="Enter Zip Code" minLength='5' maxLength='5' required />
+                        <Form.Control type='number' placeholder="Enter Zip Code" min="10000" max="99999" required />
+                        </Form.Group>
+
+                        <Form.Group as={Col} controlId="formGridCity">
+                        <Form.Label>Credit Card</Form.Label>
+                        <Form.Control type='number' placeholder="Enter credit card number" pattern="^16[0-9]{16}$" required />
                         </Form.Group>
                     </Form.Row>
         

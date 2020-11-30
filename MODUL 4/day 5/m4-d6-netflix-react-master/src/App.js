@@ -4,6 +4,7 @@ import { Container, Alert, Dropdown } from "react-bootstrap";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
+import Jumbo from "./components/Jumbo";
 
 class App extends Component {
   constructor(props) {
@@ -19,21 +20,21 @@ class App extends Component {
     };
   }
 
-  url = "http://www.omdbapi.com/?apikey=187b9f87";
+  url = "http://www.omdbapi.com/?apikey=187b9f87&";
 
   componentDidMount = () => {
     Promise.all([
-      fetch(this.url + "&s=harry%20potter")
+      fetch(this.url + "s=harry%20potter")
         .then((response) => response.json())
         .then((responseObject) =>
           this.setState({ harryPotterMovies: responseObject.Search })
         ),
-      fetch(this.url + "&s=spider%20man")
+      fetch(this.url + "s=spider%20man")
         .then((response) => response.json())
         .then((responseObject) =>
           this.setState({ spiderManMovies: responseObject.Search })
         ),
-      fetch(this.url + "&s=star%20wars")
+      fetch(this.url + "s=star%20wars")
         .then((response) => response.json())
         .then((responseObject) =>
           this.setState({ starWarsMovies: responseObject.Search })
@@ -47,17 +48,17 @@ class App extends Component {
   };
 
   fetchComments = async (movieID) => {
-    const commentsUrl = "https://striveschool.herokuapp.com/api/comments/";
+    const commentsUrl = "https://striveschool-api.herokuapp.com/api/comments/";
     const comments = await fetch(commentsUrl + movieID, {
       headers: new Headers({
-        Authorization: 'Basic '+ btoa('user26:Q2h7j3FtxhdxMdab'),
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI3ZjkxZDU0MzI0MDAwMTdlNWZjZDkiLCJpYXQiOjE2MDU4OTIzODEsImV4cCI6MTYwNzEwMTk4MX0.ezEmfj84mxa61DFSLqTNp1921uoSn86hKHbmZBiPb3A",
       }),
     }).then((response) => response.json());
     this.setState({ comments });
   };
 
   showSearchResult = (searchString) => {
-    fetch(this.url + "&s=" + searchString)
+    fetch(this.url + "s=" + searchString)
       .then((response) => response.json())
       .then((responseObject) =>
         this.setState({ searchedMovies: responseObject.Search })
@@ -69,7 +70,7 @@ class App extends Component {
       <div className="App">
         <div>
           <Navbar showSearchResult={this.showSearchResult} />
-          <Container fluid className="px-4">
+          <Container fluid>
             <div className="d-flex justify-content-between">
               <div className="d-flex">
                 <h2 className="mb-4">TV Shows</h2>
@@ -95,6 +96,7 @@ class App extends Component {
                 <i className="fa fa-th icons"></i>
               </div>
             </div>
+            <Jumbo />
             {this.state.error && (
               <Alert variant="danger" className="text-center">
                 An error has occurred, please try again later

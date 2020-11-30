@@ -17,18 +17,19 @@ class Movie extends Component {
       rate: 0,
       elementId: this.props.data.imdbID,
     },
+    coments:[]
   };
 
   submitComment = async (e) => {
     e.preventDefault();
-    const commentsUrl = "https://striveschool.herokuapp.com/api/comments/";
+    const commentsUrl = "https://striveschool-api.herokuapp.com/api/comments/";
     const response = await fetch(commentsUrl, {
       method: "POST",
       body: JSON.stringify(this.state.newComment),
-      headers: new Headers({
-        Authorization: 'Basic '+ btoa('user26:Q2h7j3FtxhdxMdab'),
+      headers: {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmI3ZjkxZDU0MzI0MDAwMTdlNWZjZDkiLCJpYXQiOjE2MDU4OTIzODEsImV4cCI6MTYwNzEwMTk4MX0.ezEmfj84mxa61DFSLqTNp1921uoSn86hKHbmZBiPb3A",
         "Content-Type": "application/json",
-      }),
+      },
     });
     if (response.ok) {
       alert("Comment added");
@@ -57,6 +58,7 @@ class Movie extends Component {
   };
 
   render() {
+    
     return (
       <Col className="mb-2" key={this.props.data.imdbID}>
         <img
@@ -82,7 +84,7 @@ class Movie extends Component {
                   <CommentList comments={this.props.comments} />
                 )}
               <div className="text-center">
-                <h5 className="my-3">Add a comment</h5>
+                <h5 className="my-3">Add a comment and rate</h5>
                 <Form onSubmit={this.submitComment}>
                   <div className="my-3 text-center">
                     <Form.Check
@@ -135,6 +137,7 @@ class Movie extends Component {
                       value={this.state.newComment.comment}
                     />
                   </InputGroup>
+                  <p>Movie ID - {this.props.data.imdbID}</p>
                   <Button variant="primary" type="submit">
                     Submit
                   </Button>
